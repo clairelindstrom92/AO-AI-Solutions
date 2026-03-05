@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-deep:     #060A12;
+  --bg-surface:  #0C1220;
+  --bg-elevated: #111827;
+  --accent:      #00C8F0;
+  --accent-dim:  rgba(0, 200, 240, 0.12);
+  --text-primary: #F0F4FF;
+  --text-muted:  #8896A8;
+  --border:      rgba(0, 200, 240, 0.10);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Chat demo animations */
+.message-enter {
+  animation: messageIn 0.35s ease forwards;
+}
+
+@keyframes messageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.typing-dot {
+  animation: typingDot 1.2s ease infinite;
+}
+
+@keyframes typingDot {
+  0%, 60%, 100% { opacity: 0.3; transform: scale(0.8) translateY(0); }
+  30%           { opacity: 1;   transform: scale(1) translateY(-3px); }
+}
+
+/* Matrix grid animation */
+.grid-cell {
+  animation: cellPulse 3s ease infinite;
+}
+
+@keyframes cellPulse {
+  0%, 100% { opacity: 0.05; background: transparent; }
+  50%      { opacity: 1;    background: rgba(0,200,240,0.06); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: rgba(0,200,240,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,200,240,0.4); }
+
+/* Section utility */
+.section-pad {
+  padding: 6rem 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .section-pad {
+    padding: 4rem 1.25rem;
+  }
+}
