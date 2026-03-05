@@ -29,7 +29,7 @@ const bullets = [
 export default function ChatDemo() {
   const [messages,     setMessages]     = useState([])
   const [showTyping,   setShowTyping]   = useState(false)
-  const chatEndRef                       = useRef(null)
+  const messagesContainerRef             = useRef(null)
   const [headerRef, headerVisible]      = useScrollReveal()
   const [contentRef, contentVisible]    = useScrollReveal()
 
@@ -65,9 +65,12 @@ export default function ChatDemo() {
     return () => timers.forEach(clearTimeout)
   }, [])
 
-  // Auto-scroll chat
+  // Auto-scroll chat — scroll only within the messages container, not the page
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    const container = messagesContainerRef.current
+    if (container) {
+      container.scrollTop = container.scrollHeight
+    }
   }, [messages, showTyping])
 
   return (
@@ -202,6 +205,7 @@ export default function ChatDemo() {
 
                     {/* Messages area */}
                     <div
+                      ref={messagesContainerRef}
                       className="px-3 py-3 flex flex-col gap-2 overflow-y-auto"
                       style={{ maxHeight: '220px', minHeight: '220px' }}
                     >
@@ -253,7 +257,6 @@ export default function ChatDemo() {
                           </div>
                         </div>
                       )}
-                      <div ref={chatEndRef} />
                     </div>
 
                     {/* Input bar */}
