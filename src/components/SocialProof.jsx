@@ -35,7 +35,8 @@ export default function SocialProof() {
               border: '1px solid rgba(0,200,240,0.12)',
               backgroundColor: 'rgba(0,200,240,0.04)',
               opacity: isVisible ? 1 : 0,
-              transition: `opacity 0.5s ease ${200 + i * 60}ms`,
+              transition: `opacity 0.5s ease ${100 + i * 50}ms`,
+              willChange: 'opacity',
             }}
           >
             {industry}

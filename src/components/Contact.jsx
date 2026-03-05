@@ -265,8 +265,9 @@ export default function Contact() {
                   className="flex gap-4 items-start"
                   style={{
                     opacity: contentVisible ? 1 : 0,
-                    transform: contentVisible ? 'translateX(0)' : 'translateX(20px)',
-                    transition: `opacity 0.6s ease ${200 + i * 100}ms, transform 0.6s ease ${200 + i * 100}ms`,
+                    transform: contentVisible ? 'translateX(0)' : 'translateX(10px)',
+                    transition: `opacity 0.55s ease ${150 + i * 80}ms, transform 0.55s ease ${150 + i * 80}ms`,
+                    willChange: 'opacity, transform',
                   }}
                 >
                   <div

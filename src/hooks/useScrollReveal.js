@@ -32,7 +32,8 @@ export function useScrollReveal(options = {}) {
 export function revealStyle(isVisible, delay = 0) {
   return {
     opacity: isVisible ? 1 : 0,
-    transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-    transition: `opacity 0.65s ease ${delay}ms, transform 0.65s ease ${delay}ms`,
+    transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+    transition: `opacity 0.55s ease ${delay}ms, transform 0.55s ease ${delay}ms`,
+    willChange: 'opacity, transform',
   }
 }

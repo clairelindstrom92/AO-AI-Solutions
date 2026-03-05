@@ -109,8 +109,9 @@ export default function Pricing() {
                   : '1px solid rgba(0,200,240,0.10)',
                 boxShadow: plan.highlight ? '0 0 50px rgba(0,200,240,0.10)' : 'none',
                 opacity: cardsVisible ? 1 : 0,
-                transform: cardsVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: `opacity 0.6s ease ${i * 100}ms, transform 0.6s ease ${i * 100}ms, box-shadow 0.3s ease`,
+                transform: cardsVisible ? 'translateY(0)' : 'translateY(16px)',
+                transition: `opacity 0.55s ease ${i * 80}ms, transform 0.55s ease ${i * 80}ms, box-shadow 0.3s ease`,
+                willChange: 'opacity, transform',
               }}
               onMouseEnter={e => {
                 if (!plan.highlight) {

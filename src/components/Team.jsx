@@ -138,8 +138,9 @@ export default function Team() {
                 backgroundColor: 'var(--bg-surface)',
                 border: '1px solid rgba(0,200,240,0.10)',
                 opacity: biosVisible ? 1 : 0,
-                transform: biosVisible ? 'translateY(0)' : 'translateY(20px)',
-                transition: `opacity 0.55s ease ${i * 120}ms, transform 0.55s ease ${i * 120}ms`,
+                transform: biosVisible ? 'translateY(0)' : 'translateY(12px)',
+                transition: `opacity 0.5s ease ${i * 100}ms, transform 0.5s ease ${i * 100}ms`,
+                willChange: 'opacity, transform',
               }}
             >
               <div className="flex items-center gap-3 mb-4">

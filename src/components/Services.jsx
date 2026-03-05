@@ -56,8 +56,9 @@ function ServiceCard({ service, delay, isVisible }) {
           ? '1px dashed rgba(0,200,240,0.12)'
           : '1px solid rgba(0,200,240,0.10)',
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms, box-shadow 0.3s ease, border-color 0.3s ease`,
+        transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+        transition: `opacity 0.55s ease ${delay}ms, transform 0.55s ease ${delay}ms, box-shadow 0.3s ease, border-color 0.3s ease`,
+        willChange: 'opacity, transform',
       }}
       onMouseEnter={e => {
         if (!service.comingSoon) {

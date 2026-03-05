@@ -67,8 +67,9 @@ export default function HowItWorks() {
                 className="flex flex-col items-center text-center lg:items-center"
                 style={{
                   opacity: stepsVisible ? 1 : 0,
-                  transform: stepsVisible ? 'translateY(0)' : 'translateY(30px)',
-                  transition: `opacity 0.65s ease ${i * 120}ms, transform 0.65s ease ${i * 120}ms`,
+                  transform: stepsVisible ? 'translateY(0)' : 'translateY(16px)',
+                  transition: `opacity 0.55s ease ${i * 100}ms, transform 0.55s ease ${i * 100}ms`,
+                  willChange: 'opacity, transform',
                 }}
               >
                 {/* Number circle */}

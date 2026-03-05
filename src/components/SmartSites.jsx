@@ -140,8 +140,9 @@ export default function SmartSites() {
                   className="flex gap-4 items-start"
                   style={{
                     opacity: leftVisible ? 1 : 0,
-                    transform: leftVisible ? 'translateX(0)' : 'translateX(-20px)',
-                    transition: `opacity 0.6s ease ${i * 100}ms, transform 0.6s ease ${i * 100}ms`,
+                    transform: leftVisible ? 'translateX(0)' : 'translateX(-10px)',
+                    transition: `opacity 0.55s ease ${i * 80}ms, transform 0.55s ease ${i * 80}ms`,
+                    willChange: 'opacity, transform',
                   }}
                 >
                   <div
