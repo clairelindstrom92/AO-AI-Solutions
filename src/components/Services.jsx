@@ -5,42 +5,41 @@ const services = [
   {
     icon: Globe,
     title: 'AI-Powered Websites',
-    desc: 'Your website becomes an AI employee — with a trained chatbot, smart lead forms, automated scheduling, and 24/7 customer support.',
+    desc: 'Your website becomes a 24/7 AI employee — trained on your business, qualifying leads, answering questions, and booking appointments while you sleep.',
     tag: 'Core Product',
     tagStyle: 'accent',
   },
   {
     icon: Zap,
     title: 'Lead Automation Systems',
-    desc: 'Never lose a lead again. AI chat intake, SMS follow-ups, email sequences, CRM sync, and booking bots that convert visitors while you sleep.',
+    desc: 'Stop losing revenue to slow follow-up. Our AI qualifies every lead instantly via chat, fires SMS and email sequences, syncs your CRM, and books appointments automatically.',
     tag: null,
   },
   {
     icon: Cpu,
-    title: 'Custom AI Integrations',
-    desc: 'Internal AI assistants, document automation, knowledge base AI, and workflow tools tailored to how your business actually operates.',
-    tag: 'Advanced',
+    title: 'Agentic AI Integrations',
+    desc: 'Multi-step AI agents that execute entire workflows autonomously — intake, qualification, scheduling, follow-up — without a single human touch.',
+    tag: 'Agentic AI',
     tagStyle: 'accent',
   },
   {
     icon: Server,
     title: 'Cloud Infrastructure',
-    desc: 'Secure, fast, always-on. We manage hosting, AI infrastructure, API pipelines, and uptime so you never have to think about it.',
+    desc: 'Secure, fast, always-on. We manage hosting, AI infrastructure, API pipelines, and uptime so your system never goes down and you never think about it.',
     tag: null,
   },
   {
     icon: RefreshCw,
     title: 'Ongoing AI Maintenance',
-    desc: 'Monthly plans that keep your AI sharp. Includes updates, automation monitoring, analytics dashboards, and feature upgrades.',
+    desc: 'Your AI gets smarter every month. We retrain on new data, monitor performance, push feature upgrades, and send you monthly analytics reports.',
     tag: null,
   },
   {
     icon: Sparkles,
-    title: 'Smart Sites',
-    desc: 'Websites that update themselves, generate content, adapt to each visitor, and optimize conversions automatically using AI.',
-    tag: 'Coming Soon',
-    tagStyle: 'muted',
-    comingSoon: true,
+    title: 'AI Search Optimization',
+    desc: 'Get found in ChatGPT, Perplexity, and Google AI Overviews — not just traditional search. We optimize your content and structure for the new era of AI-driven discovery.',
+    tag: 'New in 2026',
+    tagStyle: 'accent',
   },
 ]
 
@@ -52,19 +51,15 @@ function ServiceCard({ service, delay, isVisible }) {
       className="group relative rounded-2xl p-6 transition-all duration-300 cursor-default"
       style={{
         backgroundColor: 'var(--bg-surface)',
-        border: service.comingSoon
-          ? '1px dashed rgba(0,200,240,0.12)'
-          : '1px solid rgba(0,200,240,0.10)',
+        border: '1px solid rgba(0,200,240,0.10)',
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
         transition: `opacity 0.55s ease ${delay}ms, transform 0.55s ease ${delay}ms, box-shadow 0.3s ease, border-color 0.3s ease`,
         willChange: 'opacity, transform',
       }}
       onMouseEnter={e => {
-        if (!service.comingSoon) {
-          e.currentTarget.style.boxShadow = '0 0 40px rgba(0,200,240,0.10)'
-          e.currentTarget.style.transform = `translateY(-4px)`
-        }
+        e.currentTarget.style.boxShadow = '0 0 40px rgba(0,200,240,0.10)'
+        e.currentTarget.style.transform = `translateY(-4px)`
       }}
       onMouseLeave={e => {
         e.currentTarget.style.boxShadow = 'none'
@@ -79,10 +74,7 @@ function ServiceCard({ service, delay, isVisible }) {
           border: '1px solid rgba(0,200,240,0.15)',
         }}
       >
-        <Icon
-          size={18}
-          color={service.comingSoon ? 'rgba(0,200,240,0.45)' : '#00C8F0'}
-        />
+        <Icon size={18} color="#00C8F0" />
       </div>
 
       {/* Tag */}
@@ -112,7 +104,7 @@ function ServiceCard({ service, delay, isVisible }) {
         style={{
           fontSize: '17px',
           letterSpacing: '-0.02em',
-          color: service.comingSoon ? 'var(--text-muted)' : 'var(--text-primary)',
+          color: 'var(--text-primary)',
         }}
       >
         {service.title}
@@ -151,7 +143,7 @@ export default function Services() {
             className="font-dm font-light text-ao-muted max-w-lg mx-auto"
             style={{ fontSize: '17px', ...revealStyle(headerVisible, 120) }}
           >
-            One system. Five layers. Built to work while you sleep.
+            One platform. Six AI systems. Built to work while you sleep.
           </p>
         </div>
 

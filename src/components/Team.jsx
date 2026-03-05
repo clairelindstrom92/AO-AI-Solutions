@@ -10,7 +10,7 @@ const team = [
   {
     name:  'Michael Smith',
     title: 'AI Systems Architect & Co-Founder',
-    bio:   'Designs full-stack AI infrastructure, automation pipelines, and the backend intelligence behind every Smart Site.',
+    bio:   'Designs full-stack AI infrastructure, multi-agent automation pipelines, and the backend intelligence that powers every client system.',
     initials: 'MS',
   },
 ]
@@ -38,14 +38,34 @@ export default function Team() {
               ...revealStyle(headerVisible),
             }}
           >
-            Built by AI Engineers,<br className="hidden sm:block" /> Not Web Designers
+            The AI Engineering Team<br className="hidden sm:block" /> Behind Your Growth
           </h2>
           <p
-            className="font-dm font-light text-ao-muted max-w-lg mx-auto"
+            className="font-dm font-light text-ao-muted max-w-lg mx-auto mb-6"
             style={{ fontSize: '17px', ...revealStyle(headerVisible, 100) }}
           >
-            We don't just build websites. We engineer intelligent business systems.
+            We engineer agentic AI systems that generate real revenue — not just tech projects.
           </p>
+          {/* Powered-by logos */}
+          <div
+            className="flex flex-wrap items-center justify-center gap-4"
+            style={revealStyle(headerVisible, 180)}
+          >
+            <span className="font-dm text-xs text-ao-muted uppercase tracking-widest">Powered by</span>
+            {['OpenAI', 'Anthropic', 'Twilio', 'HubSpot', 'Make'].map(logo => (
+              <span
+                key={logo}
+                className="font-dm text-xs font-medium px-3 py-1 rounded-full"
+                style={{
+                  color: 'rgba(0,200,240,0.75)',
+                  border: '1px solid rgba(0,200,240,0.18)',
+                  backgroundColor: 'rgba(0,200,240,0.05)',
+                }}
+              >
+                {logo}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Team Photo — full together shot */}

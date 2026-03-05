@@ -2,51 +2,57 @@ import { useScrollReveal, revealStyle } from '../hooks/useScrollReveal'
 
 const plans = [
   {
-    tier:     'Starter',
+    tier:     'AI Starter',
     label:    'Launch',
-    setup:    '$2,000',
-    monthly:  '$250/mo',
+    setup:    'From $4,500',
+    monthly:  'From $797/mo',
+    monthlyNote: 'keeps your AI trained & performing',
     features: [
       'AI-powered website',
       'Trained AI chatbot',
       'Lead capture automation',
       'Hosting & deployment',
-      'Basic analytics',
+      'Basic analytics dashboard',
     ],
+    guarantee: '30-day results guarantee',
     cta:        'Get Started',
     ctaHref:    '#contact',
     highlight:  false,
   },
   {
-    tier:     'Growth',
+    tier:     'AI Growth Engine',
     label:    'Scale',
     badge:    'Most Popular',
-    setup:    '$4,000',
-    monthly:  '$500/mo',
+    setup:    'From $8,000',
+    monthly:  'From $1,497/mo',
+    monthlyNote: 'full automation + ongoing optimization',
     features: [
-      'Everything in Starter',
+      'Everything in AI Starter',
       'CRM integration',
       'SMS + email automation',
       'Booking system',
-      'Monthly AI updates',
+      'Monthly AI retraining',
       'Priority support',
     ],
+    guarantee: '30-day results guarantee',
     cta:        'Get Started',
     ctaHref:    '#contact',
     highlight:  true,
   },
   {
-    tier:     'Enterprise',
+    tier:     'Full Agentic AI',
     label:    'Custom',
-    setup:    'Custom quote',
-    monthly:  'Starting at $1,000/mo',
+    setup:    'From $15,000',
+    monthly:  'From $2,500/mo',
+    monthlyNote: 'dedicated AI engineer on your account',
     features: [
-      'Full custom AI systems',
+      'Full custom AI agent systems',
       'Internal AI assistants',
       'White-glove onboarding',
       'Dedicated AI engineer',
       'SLA guarantee',
     ],
+    guarantee: 'SLA-backed performance',
     cta:        'Book a Call',
     ctaHref:    '#contact',
     highlight:  false,
@@ -83,14 +89,26 @@ export default function Pricing() {
               ...revealStyle(headerVisible),
             }}
           >
-            AI Agency Pricing.<br className="hidden sm:block" /> Real Business Results.
+            AI That Pays For Itself.<br className="hidden sm:block" /> Guaranteed.
           </h2>
           <p
-            className="font-dm font-light text-ao-muted max-w-lg mx-auto"
+            className="font-dm font-light text-ao-muted max-w-lg mx-auto mb-4"
             style={{ fontSize: '17px', ...revealStyle(headerVisible, 100) }}
           >
-            No web designer rates. This is AI infrastructure.
+            Most clients recover their full investment within the first 90 days.
           </p>
+          <div
+            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full font-dm text-sm"
+            style={{
+              backgroundColor: 'rgba(0,200,240,0.06)',
+              border: '1px solid rgba(0,200,240,0.18)',
+              color: 'var(--text-muted)',
+              ...revealStyle(headerVisible, 180),
+            }}
+          >
+            <span style={{ color: '#00C8F0', fontWeight: 500 }}>vs. hiring a receptionist:</span>
+            A full-time hire costs $42,000/year. Your AI starts at $250/month.
+          </div>
         </div>
 
         {/* Cards */}
@@ -171,6 +189,7 @@ export default function Pricing() {
                 >
                   + {plan.monthly}
                 </div>
+                <div className="font-dm text-xs text-ao-muted mt-0.5 italic">{plan.monthlyNote}</div>
               </div>
 
               {/* Features */}
@@ -184,6 +203,17 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
+
+              {/* Guarantee */}
+              <div
+                className="flex items-center gap-2 mb-4 font-dm text-xs"
+                style={{ color: 'rgba(0,200,240,0.75)' }}
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
+                  <path d="M6 1L7.5 4.5H11L8 6.5L9 10L6 8L3 10L4 6.5L1 4.5H4.5L6 1Z" stroke="#00C8F0" strokeWidth="1.2" strokeLinejoin="round" />
+                </svg>
+                {plan.guarantee}
+              </div>
 
               {/* CTA */}
               <a

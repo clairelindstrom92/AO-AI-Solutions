@@ -4,8 +4,8 @@ import AOLogo from './AOLogo'
 
 const links = [
   { label: 'Services',     href: '#services' },
+  { label: 'AI Audit',     href: '#ai-audit' },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Smart Sites',  href: '#smart-sites' },
   { label: 'Pricing',      href: '#pricing' },
   { label: 'Contact',      href: '#contact' },
 ]

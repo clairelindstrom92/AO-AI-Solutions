@@ -4,7 +4,7 @@ import { useParticleCanvas } from '../hooks/useParticleCanvas'
 const metrics = [
   '3x More Leads Captured',
   '24/7 AI Response Rate',
-  '48hr Average Launch',
+  '$0 Missed Leads After Launch',
 ]
 
 export default function Hero() {
@@ -57,7 +57,7 @@ export default function Hero() {
             className="w-1.5 h-1.5 rounded-full bg-ao-accent"
             style={{ boxShadow: '0 0 6px rgba(0,200,240,0.9)' }}
           />
-          AI Business Infrastructure
+          The AI Growth Engine for Local Businesses
         </div>
 
         {/* H1 */}
@@ -81,7 +81,7 @@ export default function Hero() {
             animation: 'fadeUp 0.7s ease 0.3s both',
           }}
         >
-          We build intelligent websites and automation systems that capture leads, respond to customers, and operate your business around the clock.
+          We build agentic AI systems that qualify leads, book appointments, and respond to customers around the clock — so you close more business without adding headcount.
         </p>
 
         {/* CTAs */}
@@ -99,7 +99,7 @@ export default function Hero() {
             Get an AI Website
           </a>
           <a
-            href="#contact"
+            href="#ai-audit"
             className="font-dm text-ao-primary px-8 py-3.5 rounded-full text-base transition-all duration-200 hover:-translate-y-0.5"
             style={{ border: '1px solid rgba(0,200,240,0.30)' }}
             onMouseEnter={e => {
@@ -111,9 +111,17 @@ export default function Hero() {
               e.currentTarget.style.boxShadow   = 'none'
             }}
           >
-            Book a Demo
+            Get $149 AI Audit →
           </a>
         </div>
+
+        {/* Risk reversal */}
+        <p
+          className="font-dm text-ao-muted text-sm mb-8"
+          style={{ animation: 'fadeUp 0.7s ease 0.55s both' }}
+        >
+          No long-term contracts. Cancel anytime.
+        </p>
 
         {/* Metric badges */}
         <div className="flex flex-wrap items-center justify-center gap-3">
