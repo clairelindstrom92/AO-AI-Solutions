@@ -12,7 +12,7 @@ const valueProps = [
   {
     icon: Phone,
     title: 'Free strategy call included',
-    desc:  'A 30-minute call where we map out exactly what we'd build for you.',
+    desc:  "A 30-minute call where we map out exactly what we'd build for you.",
   },
   {
     icon: Shield,

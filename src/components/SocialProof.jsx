@@ -18,9 +18,8 @@ export default function SocialProof() {
       ref={ref}
       className="py-6 px-6"
       style={{
-        borderTop:    'none',
-        borderBottom: '1px solid rgba(0,200,240,0.08)',
         borderTop:    '1px solid rgba(0,200,240,0.08)',
+        borderBottom: '1px solid rgba(0,200,240,0.08)',
         ...revealStyle(isVisible),
       }}
     >
