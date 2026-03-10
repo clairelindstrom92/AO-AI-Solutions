@@ -83,6 +83,20 @@ export default function Footer() {
             <p className="font-dm text-xs text-ao-muted" style={{ opacity: 0.5 }}>
               © {new Date().getFullYear()} AO AI Solutions. All rights reserved.
             </p>
+            <div className="flex flex-col gap-1 mt-4">
+              <a
+                href="mailto:claire.lindstrom@aoaisolutions.dev"
+                className="font-dm text-xs text-ao-muted hover:text-ao-primary transition-colors duration-200"
+              >
+                claire.lindstrom@aoaisolutions.dev
+              </a>
+              <a
+                href="mailto:michael.smith@aoaisolutions.dev"
+                className="font-dm text-xs text-ao-muted hover:text-ao-primary transition-colors duration-200"
+              >
+                michael.smith@aoaisolutions.dev
+              </a>
+            </div>
           </div>
 
           {/* Center — Nav links */}
