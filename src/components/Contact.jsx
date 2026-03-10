@@ -60,7 +60,7 @@ export default function Contact() {
   } = useForm({ resolver: zodResolver(schema) })
 
   const onSubmit = async (data) => {
-    // Insert lead into Supabase leads table
+    // 1. Insert lead into Supabase leads table
     const { error } = await supabase.from('leads').insert([{
       full_name:  data.fullName,
       company:    data.company,
@@ -74,7 +74,19 @@ export default function Contact() {
     if (error) {
       console.error('[Contact] Supabase insert error:', error.message)
     }
-    // GA4 lead conversion event
+
+    // 2. Send email notification → claire.lindstrom & michael.smith @aoaisolutions.dev
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+    } catch (err) {
+      console.error('[Contact] Email notification error:', err.message)
+    }
+
+    // 3. GA4 lead conversion event
     trackContactFormSubmit()
   }
 
