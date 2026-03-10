@@ -11,6 +11,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import AOLogo from './AOLogo'
+import { trackBookDemoClick, trackGetWebsiteClick } from '../lib/analytics'
 
 // ── NAV LINKS ─────────────────────────────────────────────────────────────────
 // MANUAL EDIT: Add or remove navigation items here
@@ -71,8 +72,10 @@ export default function Nav() {
         <div className="hidden lg:flex items-center gap-3">
           <a
             href="#contact"
+            aria-label="Book a free strategy demo call"
             className="font-dm text-sm text-ao-primary px-5 py-2 rounded-full transition-all duration-200 hover:-translate-y-px"
             style={{ border: '1px solid rgba(0,200,240,0.30)' }}
+            onClick={() => trackBookDemoClick('nav')}
             onMouseEnter={e => {
               e.currentTarget.style.borderColor = 'rgba(0,200,240,0.70)'
               e.currentTarget.style.boxShadow   = '0 0 18px rgba(0,200,240,0.14)'
@@ -86,8 +89,10 @@ export default function Nav() {
           </a>
           <a
             href="#contact"
+            aria-label="Get started with an AI website"
             className="font-dm text-sm font-medium text-ao-deep bg-ao-accent px-5 py-2 rounded-full transition-all duration-200 hover:-translate-y-px"
             style={{ boxShadow: '0 0 0 rgba(0,200,240,0)' }}
+            onClick={() => trackGetWebsiteClick('nav')}
             onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 28px rgba(0,200,240,0.45)'}
             onMouseLeave={e => e.currentTarget.style.boxShadow = '0 0 0 rgba(0,200,240,0)'}
           >
@@ -127,7 +132,8 @@ export default function Nav() {
           <div className="flex flex-col gap-3 pt-2">
             <a
               href="#contact"
-              onClick={handleLink}
+              aria-label="Book a free strategy demo call"
+              onClick={() => { handleLink(); trackBookDemoClick('nav-mobile') }}
               className="font-dm text-sm text-ao-primary text-center px-5 py-2.5 rounded-full"
               style={{ border: '1px solid rgba(0,200,240,0.30)' }}
             >
@@ -135,7 +141,8 @@ export default function Nav() {
             </a>
             <a
               href="#contact"
-              onClick={handleLink}
+              aria-label="Get started with an AI website"
+              onClick={() => { handleLink(); trackGetWebsiteClick('nav-mobile') }}
               className="font-dm text-sm font-medium text-ao-deep bg-ao-accent text-center px-5 py-2.5 rounded-full"
             >
               Get AI Website

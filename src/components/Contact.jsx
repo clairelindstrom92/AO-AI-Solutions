@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form'
 import { Clock, Phone, Shield } from 'lucide-react'
 import { useScrollReveal, revealStyle } from '../hooks/useScrollReveal'
 import AOLogo from './AOLogo'
+import { trackContactFormSubmit } from '../lib/analytics'
 
 // ── TRUST SIGNALS ─────────────────────────────────────────────────────────────
 // MANUAL EDIT: Update these three value proposition items
@@ -49,6 +50,8 @@ export default function Contact() {
     // Simulate API call — replace with real endpoint in production
     await new Promise(resolve => setTimeout(resolve, 1200))
     console.log('Form submission:', data)
+    // GA4 lead conversion event
+    trackContactFormSubmit()
   }
 
   return (

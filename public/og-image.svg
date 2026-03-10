@@ -1,0 +1,122 @@
+<!--
+  OG IMAGE — AO AI Solutions
+  Size: 1200x630px (standard social preview size)
+  Used by: Facebook, LinkedIn, Twitter/X, iMessage link previews
+
+  IMPORTANT: For best social media compatibility, export this SVG
+  as a 1200x630 JPEG and save as /public/og-image.jpg
+  You can do this by opening this file in a browser, screenshotting
+  at 1200x630, or using a tool like Figma / Canva / Photopea.
+
+  MANUAL EDIT: Update the tagline text in the <text> elements below.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#060A12"/>
+      <stop offset="100%" stop-color="#0A1628"/>
+    </linearGradient>
+    <!-- Cyan glow -->
+    <radialGradient id="glow" cx="50%" cy="45%" r="45%">
+      <stop offset="0%"   stop-color="#00C8F0" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#00C8F0" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#00C8F0" stroke-width="0.4" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Grid overlay -->
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <!-- Radial glow -->
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Top cyan border accent -->
+  <rect x="0" y="0" width="1200" height="3" fill="#00C8F0" opacity="0.8"/>
+
+  <!-- AO Logo mark — stylised "AIO" -->
+  <text
+    x="100"
+    y="120"
+    font-family="Arial Black, sans-serif"
+    font-size="52"
+    font-weight="900"
+    letter-spacing="-2"
+    fill="#00C8F0"
+  >AIO</text>
+
+  <!-- Company name -->
+  <text
+    x="100"
+    y="155"
+    font-family="Arial, sans-serif"
+    font-size="16"
+    font-weight="400"
+    letter-spacing="4"
+    fill="#88A0A8"
+  >AI SOLUTIONS</text>
+
+  <!-- Divider line -->
+  <line x1="100" y1="178" x2="260" y2="178" stroke="#00C8F0" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- Main headline -->
+  <text
+    x="100"
+    y="290"
+    font-family="Arial Black, sans-serif"
+    font-size="72"
+    font-weight="900"
+    letter-spacing="-3"
+    fill="#FFFFFF"
+  >AI-Powered</text>
+  <text
+    x="100"
+    y="378"
+    font-family="Arial Black, sans-serif"
+    font-size="72"
+    font-weight="900"
+    letter-spacing="-3"
+    fill="#FFFFFF"
+  >Websites That</text>
+  <text
+    x="100"
+    y="466"
+    font-family="Arial Black, sans-serif"
+    font-size="72"
+    font-weight="900"
+    letter-spacing="-3"
+    fill="#00C8F0"
+  >Run Your Business</text>
+
+  <!-- Subheadline -->
+  <text
+    x="100"
+    y="528"
+    font-family="Arial, sans-serif"
+    font-size="22"
+    font-weight="300"
+    fill="#88A0A8"
+  >Capture leads · Respond 24/7 · Automate your operations</text>
+
+  <!-- URL badge bottom right -->
+  <rect x="900" y="560" width="220" height="40" rx="20" fill="#00C8F0" fill-opacity="0.12" stroke="#00C8F0" stroke-width="1" stroke-opacity="0.3"/>
+  <text
+    x="1010"
+    y="585"
+    font-family="Arial, sans-serif"
+    font-size="15"
+    font-weight="500"
+    text-anchor="middle"
+    fill="#00C8F0"
+  >aoaisolutions.dev</text>
+
+  <!-- Cyan dot decoration top right -->
+  <circle cx="1100" cy="80"  r="3" fill="#00C8F0" opacity="0.6"/>
+  <circle cx="1140" cy="50"  r="2" fill="#00C8F0" opacity="0.4"/>
+  <circle cx="1060" cy="110" r="2" fill="#00C8F0" opacity="0.3"/>
+  <circle cx="1150" cy="130" r="4" fill="#00C8F0" opacity="0.2"/>
+</svg>

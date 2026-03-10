@@ -1,4 +1,17 @@
+// ============================================================
+// FILE: Pricing.jsx
+// PURPOSE: Pricing tiers — Starter, Growth (highlighted), Enterprise
+// SECTION: Public marketing site — between SmartSites/Team and FAQ
+// DATA: Update plans array below to change tiers, features, prices
+// MANUAL EDITS: Safe to update setup price, monthly price, features, CTA labels
+// SEO: Targets "AI website pricing", "AI agency cost" search intent
+//      Pricing data is echoed in index.html JSON-LD Service schema
+//      Update both places when prices change
+// CLAUDE AUTOMATION: Can add new tiers, update feature lists
+// ============================================================
+
 import { useScrollReveal, revealStyle } from '../hooks/useScrollReveal'
+import { trackPricingCtaClick } from '../lib/analytics'
 
 const plans = [
   {
@@ -188,6 +201,7 @@ export default function Pricing() {
               {/* CTA */}
               <a
                 href={plan.ctaHref}
+                aria-label={`Get started with the ${plan.tier} plan`}
                 className="block text-center font-dm font-medium py-3 rounded-full text-sm transition-all duration-200 hover:-translate-y-0.5"
                 style={
                   plan.highlight
@@ -201,6 +215,7 @@ export default function Pricing() {
                         border: '1px solid rgba(0,200,240,0.28)',
                       }
                 }
+                onClick={() => trackPricingCtaClick(plan.tier)}
                 onMouseEnter={e => {
                   if (plan.highlight) e.currentTarget.style.boxShadow = '0 0 28px rgba(0,200,240,0.45)'
                 }}

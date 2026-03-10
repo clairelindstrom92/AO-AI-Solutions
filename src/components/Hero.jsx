@@ -11,6 +11,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { useParticleCanvas } from '../hooks/useParticleCanvas'
+import { trackGetWebsiteClick, trackBookDemoClick } from '../lib/analytics'
 
 // ── METRICS BAR DATA ──────────────────────────────────────────────────────────
 // MANUAL EDIT: Update these three stat labels as results improve
@@ -104,8 +105,10 @@ export default function Hero() {
         >
           <a
             href="#contact"
+            aria-label="Get started with an AI website"
             className="font-dm font-medium text-ao-deep bg-ao-accent px-8 py-3.5 rounded-full text-base transition-all duration-200 hover:-translate-y-0.5"
             style={{ boxShadow: '0 0 0 rgba(0,200,240,0)' }}
+            onClick={() => trackGetWebsiteClick('hero')}
             onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 36px rgba(0,200,240,0.5)'}
             onMouseLeave={e => e.currentTarget.style.boxShadow = '0 0 0 rgba(0,200,240,0)'}
           >
@@ -113,8 +116,10 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
+            aria-label="Book a free strategy demo call"
             className="font-dm text-ao-primary px-8 py-3.5 rounded-full text-base transition-all duration-200 hover:-translate-y-0.5"
             style={{ border: '1px solid rgba(0,200,240,0.30)' }}
+            onClick={() => trackBookDemoClick('hero')}
             onMouseEnter={e => {
               e.currentTarget.style.borderColor = 'rgba(0,200,240,0.65)'
               e.currentTarget.style.boxShadow   = '0 0 20px rgba(0,200,240,0.12)'
