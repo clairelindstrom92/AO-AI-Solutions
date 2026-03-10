@@ -17,6 +17,7 @@ const team = [
 
 export default function Team() {
   const [headerRef, headerVisible] = useScrollReveal()
+  const [photoRef,  photoVisible]  = useScrollReveal()
   const [biosRef,   biosVisible]   = useScrollReveal()
 
   return (
@@ -45,6 +46,46 @@ export default function Team() {
           >
             We don't just build websites. We engineer intelligent business systems.
           </p>
+        </div>
+
+        {/* Team Photo — full together shot */}
+        <div
+          ref={photoRef}
+          className="mb-12 flex justify-center"
+          style={revealStyle(photoVisible)}
+        >
+          <div
+            className="relative rounded-2xl overflow-hidden"
+            style={{
+              maxWidth: '600px',
+              width: '100%',
+              border: '1px solid rgba(0,200,240,0.14)',
+              boxShadow: '0 0 60px rgba(0,200,240,0.08)',
+            }}
+          >
+            <img
+              src="/team.jpg"
+              alt="Claire Lindstrom and Michael Smith — Co-Founders of AO AI Solutions"
+              className="w-full object-cover"
+              style={{ aspectRatio: '4/3', objectPosition: 'center top' }}
+            />
+
+            {/* Bottom gradient overlay for text legibility */}
+            <div
+              className="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none"
+              style={{
+                background: 'linear-gradient(to top, rgba(6,10,18,0.80) 0%, transparent 100%)',
+              }}
+            />
+
+            {/* Photo caption */}
+            <div className="absolute bottom-5 left-6 right-6 flex justify-between items-end">
+              <div>
+                <div className="font-dm text-xs text-ao-muted">Claire Lindstrom · Michael Smith</div>
+                <div className="font-dm text-xs text-ao-accent mt-0.5">Co-Founders, AO AI Solutions</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Individual bio cards */}
