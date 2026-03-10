@@ -17,7 +17,6 @@ const team = [
 
 export default function Team() {
   const [headerRef, headerVisible] = useScrollReveal()
-  const [photoRef,  photoVisible]  = useScrollReveal()
   const [biosRef,   biosVisible]   = useScrollReveal()
 
   return (
@@ -46,83 +45,6 @@ export default function Team() {
           >
             We don't just build websites. We engineer intelligent business systems.
           </p>
-        </div>
-
-        {/* Team Photo — full together shot */}
-        <div
-          ref={photoRef}
-          className="mb-12 flex justify-center"
-          style={revealStyle(photoVisible)}
-        >
-          <div
-            className="relative rounded-2xl overflow-hidden"
-            style={{
-              maxWidth: '600px',
-              width: '100%',
-              border: '1px solid rgba(0,200,240,0.14)',
-              boxShadow: '0 0 60px rgba(0,200,240,0.08)',
-            }}
-          >
-            {/* Try to load real photo — fallback to placeholder */}
-            <img
-              src="/team.jpg"
-              alt="Claire Lindstrom and Michael Smith — Co-Founders of AO AI Solutions"
-              className="w-full object-cover"
-              style={{ aspectRatio: '4/3', objectPosition: 'center top' }}
-              onError={e => {
-                e.currentTarget.style.display = 'none'
-                e.currentTarget.nextSibling.style.display = 'flex'
-              }}
-            />
-            {/* Fallback placeholder */}
-            <div
-              className="w-full items-center justify-center gap-8 py-16 px-8"
-              style={{
-                display: 'none',
-                background: 'linear-gradient(135deg, rgba(0,200,240,0.08) 0%, rgba(0,200,240,0.02) 100%)',
-                aspectRatio: '4/3',
-              }}
-            >
-              {team.map(person => (
-                <div key={person.name} className="flex flex-col items-center gap-3">
-                  <div
-                    className="w-24 h-24 rounded-full flex items-center justify-center"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(0,200,240,0.20) 0%, rgba(0,200,240,0.06) 100%)',
-                      border: '2px solid rgba(0,200,240,0.30)',
-                    }}
-                  >
-                    <span
-                      className="font-syne font-bold text-ao-accent"
-                      style={{ fontSize: '28px' }}
-                    >
-                      {person.initials}
-                    </span>
-                  </div>
-                  <div className="text-center">
-                    <div className="font-syne font-bold text-ao-primary text-sm">{person.name}</div>
-                    <div className="font-dm text-ao-muted text-xs mt-1">{person.title}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom gradient overlay for text legibility */}
-            <div
-              className="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none"
-              style={{
-                background: 'linear-gradient(to top, rgba(6,10,18,0.80) 0%, transparent 100%)',
-              }}
-            />
-
-            {/* Photo caption */}
-            <div className="absolute bottom-5 left-6 right-6 flex justify-between items-end">
-              <div>
-                <div className="font-dm text-xs text-ao-muted">Claire Lindstrom · Michael Smith</div>
-                <div className="font-dm text-xs text-ao-accent mt-0.5">Co-Founders, AO AI Solutions</div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Individual bio cards */}
