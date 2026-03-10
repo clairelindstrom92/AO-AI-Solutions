@@ -66,8 +66,7 @@ export default function Team() {
             <img
               src="/team.jpg"
               alt="Claire Lindstrom and Michael Smith — Co-Founders of AO AI Solutions"
-              className="w-full object-cover"
-              style={{ aspectRatio: '4/3', objectPosition: 'center top' }}
+              className="w-full"
             />
 
             {/* Bottom gradient overlay for text legibility */}
