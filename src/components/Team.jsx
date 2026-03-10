@@ -18,12 +18,14 @@ const team = [
     title:    'AI Systems Engineer · Founder',
     bio:      'Designs full-stack AI infrastructure, automation pipelines, and the backend intelligence behind every Smart Site.',
     initials: 'MS',
+    email:    'michael.smith@aoaisolutions.dev',
   },
   {
     name:     'Claire Lindstrom',
     title:    'AI Systems Engineer · Co-Founder',
     bio:      'Specializes in conversational AI systems, LLM fine-tuning, and building chatbots that actually convert.',
     initials: 'CL',
+    email:    'claire.lindstrom@aoaisolutions.dev',
   },
 ]
 
@@ -148,6 +150,12 @@ export default function Team() {
               <p className="font-dm font-light text-ao-muted leading-relaxed" style={{ fontSize: '14px' }}>
                 {person.bio}
               </p>
+              <a
+                href={`mailto:${person.email}`}
+                className="font-dm text-xs text-ao-accent hover:text-ao-primary transition-colors duration-200 mt-3 inline-block"
+              >
+                {person.email}
+              </a>
             </div>
           ))}
         </div>
