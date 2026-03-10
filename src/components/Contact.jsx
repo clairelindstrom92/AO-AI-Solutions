@@ -10,10 +10,23 @@
 // ============================================================
 
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 import { Clock, Phone, Shield } from 'lucide-react'
 import { useScrollReveal, revealStyle } from '../hooks/useScrollReveal'
 import AOLogo from './AOLogo'
+import { supabase } from '../lib/supabase'
 import { trackContactFormSubmit } from '../lib/analytics'
+
+// ── ZOD VALIDATION SCHEMA ─────────────────────────────────────────────────────
+const schema = z.object({
+  fullName: z.string().min(2, 'Full name is required'),
+  company:  z.string().min(2, 'Company name is required'),
+  email:    z.string().email('Please enter a valid email'),
+  phone:    z.string().optional(),
+  service:  z.string().min(1, 'Please select a service'),
+  message:  z.string().optional(),
+})
 
 // ── TRUST SIGNALS ─────────────────────────────────────────────────────────────
 // MANUAL EDIT: Update these three value proposition items
@@ -44,12 +57,23 @@ export default function Contact() {
     handleSubmit,
     formState: { errors, isSubmitting, isSubmitSuccessful },
     reset,
-  } = useForm()
+  } = useForm({ resolver: zodResolver(schema) })
 
   const onSubmit = async (data) => {
-    // Simulate API call — replace with real endpoint in production
-    await new Promise(resolve => setTimeout(resolve, 1200))
-    console.log('Form submission:', data)
+    // Insert lead into Supabase leads table
+    const { error } = await supabase.from('leads').insert([{
+      full_name:  data.fullName,
+      company:    data.company,
+      email:      data.email,
+      phone:      data.phone || null,
+      service:    data.service,
+      message:    data.message || null,
+      status:     'new',
+      created_at: new Date().toISOString(),
+    }])
+    if (error) {
+      console.error('[Contact] Supabase insert error:', error.message)
+    }
     // GA4 lead conversion event
     trackContactFormSubmit()
   }

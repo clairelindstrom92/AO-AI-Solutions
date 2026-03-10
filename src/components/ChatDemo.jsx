@@ -2,21 +2,23 @@ import { useState, useEffect, useRef } from 'react'
 import { MessageCircle, X } from 'lucide-react'
 import { useScrollReveal, revealStyle } from '../hooks/useScrollReveal'
 
-// Full chat sequence — CSS keyframes only for individual message animations
+// ── CHAT SEQUENCE ─────────────────────────────────────────────────────────────
+// MANUAL EDIT: Update this array to change the animated conversation
 const SEQUENCE = [
   { type: 'typing',  delay: 0 },
-  { type: 'msg',     delay: 700,  sender: 'ai',   text: "Hi! I'm the AI assistant for Riverside Dental. How can I help you today?" },
-  { type: 'msg',     delay: 2200, sender: 'user',  text: "Do you accept new patients?" },
-  { type: 'typing',  delay: 2700 },
-  { type: 'msg',     delay: 3400, sender: 'ai',    text: "Yes! We're accepting new patients. Would you like to schedule a free consultation?" },
-  { type: 'msg',     delay: 5000, sender: 'user',  text: "Yes please" },
-  { type: 'typing',  delay: 5500 },
-  { type: 'msg',     delay: 6100, sender: 'ai',    text: "Great! I have openings Tuesday at 2pm or Thursday at 10am. Which works better?" },
-  { type: 'typing',  delay: 7000 },
-  { type: 'msg',     delay: 7600, sender: 'ai',    text: "Perfect — I've sent a confirmation to your email. See you Tuesday! 🎉" },
+  { type: 'msg',     delay: 700,   sender: 'ai',   text: "Hey! I'm the AI assistant for Riverside Dental. What can I help you with today? 😊" },
+  { type: 'msg',     delay: 2400,  sender: 'user',  text: "I've been thinking about dental implants. How much do they cost?" },
+  { type: 'typing',  delay: 2900 },
+  { type: 'msg',     delay: 3900,  sender: 'ai',    text: "Great question! Implants typically range from $3,000–$5,000 per tooth. The best way to get an exact quote is a free consultation — I can book that for you right now." },
+  { type: 'msg',     delay: 6000,  sender: 'user',  text: "That works. What's available this week?" },
+  { type: 'typing',  delay: 6500 },
+  { type: 'msg',     delay: 7400,  sender: 'ai',    text: "I have Wednesday at 2pm or Friday at 10am. Which works better for you?" },
+  { type: 'msg',     delay: 9200,  sender: 'user',  text: "Wednesday at 2pm" },
+  { type: 'typing',  delay: 9700 },
+  { type: 'msg',     delay: 10500, sender: 'ai',    text: "Perfect — you're booked! A confirmation is on its way to your phone. See you Wednesday at 2pm! 🎉" },
 ]
 
-const LOOP_AT = 17500 // 7.6s sequence + ~10s pause
+const LOOP_AT = 24000 // 10.5s sequence + ~13.5s pause before replay
 
 const bullets = [
   'Answers questions instantly — 24/7',

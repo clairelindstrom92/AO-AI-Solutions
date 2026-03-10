@@ -1,6 +1,6 @@
 // ============================================================
 // FILE: Footer.jsx
-// PURPOSE: Site footer — navigation links, copyright, CTA
+// PURPOSE: Site footer — logo, navigation links, CTA, acronym watermark
 // SECTION: Public marketing site — bottom of every page
 // DATA: Update footerLinks array to add/remove nav items
 // MANUAL EDITS: Safe to update links, copyright year, tagline
@@ -8,13 +8,12 @@
 // CLAUDE AUTOMATION: Can add new sections/links as site grows
 // ============================================================
 
-import AOLogo from './AOLogo'
-
 // ── FOOTER NAVIGATION LINKS ───────────────────────────────────────────────────
 // MANUAL EDIT: Add new links here as new sections are added to the site
 const footerLinks = [
   { label: 'Services',     href: '#services' },
   { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Results',      href: '#results' },
   { label: 'Pricing',      href: '#pricing' },
   { label: 'FAQ',          href: '#faq' },
   { label: 'Contact',      href: '#contact' },
@@ -41,15 +40,38 @@ export default function Footer() {
         }}
       />
 
+      {/* Acronym watermark — centered, blend-screen so black bg disappears */}
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none"
+        style={{ opacity: 0.07 }}
+      >
+        <img
+          src="/logo-acronym.jpeg"
+          alt=""
+          aria-hidden="true"
+          className="blend-screen"
+          style={{
+            height: '120px',
+            width: 'auto',
+            filter: 'brightness(2) contrast(1.2)',
+          }}
+        />
+      </div>
+
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
 
           {/* Left — Logo + tagline */}
           <div>
             <div className="flex items-center gap-2.5 mb-3">
-              <AOLogo className="h-7 w-auto" />
-              <span className="font-syne font-bold text-base text-ao-primary tracking-tight2">
-                Ai Solutions
+              <img
+                src="/logo-transparent.png"
+                alt="AO AI Solutions logo"
+                className="h-7 w-auto"
+                style={{ filter: 'brightness(1.1)' }}
+              />
+              <span className="font-syne font-bold text-base text-ao-primary" style={{ letterSpacing: '-0.02em' }}>
+                AO AI Solutions
               </span>
             </div>
             <p

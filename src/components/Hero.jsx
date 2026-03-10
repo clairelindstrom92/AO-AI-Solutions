@@ -1,6 +1,6 @@
 // ============================================================
 // FILE: Hero.jsx
-// PURPOSE: Above-the-fold hero section — headline, CTA, metrics
+// PURPOSE: Above-the-fold hero section — GrandSign emblem, headline, CTA, metrics
 // SECTION: Public marketing site — first visible section
 // DATA: Update metrics array and headline text below
 // MANUAL EDITS: Safe to update metrics[], headline, subheadline, CTA labels
@@ -45,13 +45,13 @@ export default function Hero() {
         style={{ opacity: 0.65 }}
       />
 
-      {/* Radial glow behind headline */}
+      {/* Radial glow behind emblem */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{
-          width:  '800px',
-          height: '600px',
-          background: 'radial-gradient(ellipse at center, rgba(0,200,240,0.07) 0%, transparent 70%)',
+          width:  '900px',
+          height: '700px',
+          background: 'radial-gradient(ellipse at center, rgba(0,200,240,0.09) 0%, transparent 65%)',
         }}
       />
 
@@ -74,13 +74,31 @@ export default function Hero() {
           AI Business Infrastructure
         </div>
 
+        {/* GrandSign — anchor emblem */}
+        <div
+          className="flex justify-center mb-6"
+          style={{ animation: 'fadeIn 0.9s ease 0.1s both' }}
+        >
+          <img
+            src="/logo-grand.jpeg"
+            alt="AO AI Solutions — anchor emblem"
+            className="blend-screen select-none pointer-events-none"
+            style={{
+              width: 'clamp(200px, 34vw, 400px)',
+              height: 'auto',
+              filter: 'brightness(1.25) contrast(1.1) saturate(1.15)',
+              display: 'block',
+            }}
+          />
+        </div>
+
         {/* H1 */}
         <h1
           className="font-syne font-bold text-ao-primary leading-none mb-6"
           style={{
-            fontSize: 'clamp(42px, 7.5vw, 86px)',
+            fontSize: 'clamp(38px, 6.5vw, 80px)',
             letterSpacing: '-0.04em',
-            animation: 'fadeUp 0.7s ease 0.15s both',
+            animation: 'fadeUp 0.7s ease 0.25s both',
           }}
         >
           AI-Powered Websites<br />
@@ -92,7 +110,7 @@ export default function Hero() {
           className="font-dm font-light text-ao-muted max-w-2xl mx-auto mb-10 leading-relaxed"
           style={{
             fontSize: 'clamp(16px, 2vw, 19px)',
-            animation: 'fadeUp 0.7s ease 0.3s both',
+            animation: 'fadeUp 0.7s ease 0.4s both',
           }}
         >
           We build intelligent websites and automation systems that capture leads, respond to customers, and operate your business around the clock.
@@ -101,7 +119,7 @@ export default function Hero() {
         {/* CTAs */}
         <div
           className="flex flex-wrap items-center justify-center gap-4 mb-14"
-          style={{ animation: 'fadeUp 0.7s ease 0.45s both' }}
+          style={{ animation: 'fadeUp 0.7s ease 0.55s both' }}
         >
           <a
             href="#contact"
@@ -157,7 +175,7 @@ export default function Hero() {
       {/* Bottom gradient fade */}
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, transparent, #060A12)' }}
+        style={{ background: 'linear-gradient(to bottom, transparent, var(--bg-deep))' }}
       />
     </section>
   )

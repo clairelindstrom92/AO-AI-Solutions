@@ -10,7 +10,6 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import AOLogo from './AOLogo'
 import { trackBookDemoClick, trackGetWebsiteClick } from '../lib/analytics'
 
 // ── NAV LINKS ─────────────────────────────────────────────────────────────────
@@ -18,14 +17,14 @@ import { trackBookDemoClick, trackGetWebsiteClick } from '../lib/analytics'
 const links = [
   { label: 'Services',     href: '#services' },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Smart Sites',  href: '#smart-sites' },
+  { label: 'Results',      href: '#results' },
   { label: 'Pricing',      href: '#pricing' },
   { label: 'Contact',      href: '#contact' },
 ]
 
 export default function Nav() {
-  const [scrolled,    setScrolled]    = useState(false)
-  const [mobileOpen,  setMobileOpen]  = useState(false)
+  const [scrolled,   setScrolled]   = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -41,17 +40,25 @@ export default function Nav() {
       style={{
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        backgroundColor: 'rgba(6,10,18,0.75)',
-        borderBottom: scrolled ? '1px solid rgba(0,200,240,0.10)' : '1px solid transparent',
+        backgroundColor: scrolled ? 'rgba(11,18,32,0.92)' : 'rgba(11,18,32,0.70)',
+        borderBottom: scrolled ? '1px solid rgba(0,200,240,0.12)' : '1px solid transparent',
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between">
 
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
-          <AOLogo className="h-7 w-auto" />
-          <span className="font-syne font-bold text-base text-ao-primary tracking-tight2 hidden sm:block">
-            Ai Solutions
+        {/* Logo — uses actual brand image with transparent background */}
+        <a href="#" className="flex items-center gap-3 group" aria-label="AO AI Solutions home">
+          <img
+            src="/logo-transparent.png"
+            alt="AO AI Solutions logo"
+            className="h-8 w-auto"
+            style={{ filter: 'brightness(1.1)' }}
+          />
+          <span
+            className="font-syne font-bold text-base text-ao-primary hidden sm:block"
+            style={{ letterSpacing: '-0.02em' }}
+          >
+            AI Solutions
           </span>
         </a>
 
@@ -71,6 +78,13 @@ export default function Nav() {
         {/* Right CTAs */}
         <div className="hidden lg:flex items-center gap-3">
           <a
+            href="/login"
+            className="font-dm text-sm text-ao-muted hover:text-ao-primary transition-colors duration-200"
+            aria-label="Client portal login"
+          >
+            Client Login
+          </a>
+          <a
             href="#contact"
             aria-label="Book a free strategy demo call"
             className="font-dm text-sm text-ao-primary px-5 py-2 rounded-full transition-all duration-200 hover:-translate-y-px"
@@ -78,7 +92,7 @@ export default function Nav() {
             onClick={() => trackBookDemoClick('nav')}
             onMouseEnter={e => {
               e.currentTarget.style.borderColor = 'rgba(0,200,240,0.70)'
-              e.currentTarget.style.boxShadow   = '0 0 18px rgba(0,200,240,0.14)'
+              e.currentTarget.style.boxShadow   = '0 0 18px rgba(0,200,240,0.18)'
             }}
             onMouseLeave={e => {
               e.currentTarget.style.borderColor = 'rgba(0,200,240,0.30)'
@@ -93,7 +107,7 @@ export default function Nav() {
             className="font-dm text-sm font-medium text-ao-deep bg-ao-accent px-5 py-2 rounded-full transition-all duration-200 hover:-translate-y-px"
             style={{ boxShadow: '0 0 0 rgba(0,200,240,0)' }}
             onClick={() => trackGetWebsiteClick('nav')}
-            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 28px rgba(0,200,240,0.45)'}
+            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 28px rgba(0,200,240,0.55)'}
             onMouseLeave={e => e.currentTarget.style.boxShadow = '0 0 0 rgba(0,200,240,0)'}
           >
             Get AI Website
@@ -104,7 +118,7 @@ export default function Nav() {
         <button
           className="lg:hidden text-ao-primary p-1.5"
           onClick={() => setMobileOpen(v => !v)}
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation menu"
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -113,7 +127,7 @@ export default function Nav() {
       {/* Mobile drawer */}
       <div
         className="lg:hidden overflow-hidden transition-all duration-300"
-        style={{ maxHeight: mobileOpen ? '400px' : '0' }}
+        style={{ maxHeight: mobileOpen ? '440px' : '0' }}
       >
         <div
           className="px-6 pb-6 pt-2 flex flex-col gap-4"
@@ -129,6 +143,13 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
+          <a
+            href="/login"
+            onClick={handleLink}
+            className="font-dm text-sm text-ao-muted hover:text-ao-primary transition-colors py-1"
+          >
+            Client Login
+          </a>
           <div className="flex flex-col gap-3 pt-2">
             <a
               href="#contact"
