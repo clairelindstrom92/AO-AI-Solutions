@@ -1,9 +1,22 @@
+// ============================================================
+// FILE: Footer.jsx
+// PURPOSE: Site footer — navigation links, copyright, CTA
+// SECTION: Public marketing site — bottom of every page
+// DATA: Update footerLinks array to add/remove nav items
+// MANUAL EDITS: Safe to update links, copyright year, tagline
+// SEO: Footer links support internal linking strategy
+// CLAUDE AUTOMATION: Can add new sections/links as site grows
+// ============================================================
+
 import AOLogo from './AOLogo'
 
+// ── FOOTER NAVIGATION LINKS ───────────────────────────────────────────────────
+// MANUAL EDIT: Add new links here as new sections are added to the site
 const footerLinks = [
   { label: 'Services',     href: '#services' },
-  { label: 'Pricing',      href: '#pricing' },
   { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Pricing',      href: '#pricing' },
+  { label: 'FAQ',          href: '#faq' },
   { label: 'Contact',      href: '#contact' },
 ]
 

@@ -1,6 +1,19 @@
+// ============================================================
+// FILE: Services.jsx
+// PURPOSE: Service offerings grid — 6 service cards
+// SECTION: Public marketing site — "Everything Your Business Needs" block
+// DATA: Add, remove, or edit services in the `services` array below
+// MANUAL EDITS: Safe to update title, desc, tag in services[]
+// SEO: Service names match JSON-LD Service schema in index.html
+// CLAUDE AUTOMATION: Can update service descriptions, add new cards
+// ============================================================
+
 import { Globe, Zap, Cpu, Server, RefreshCw, Sparkles } from 'lucide-react'
 import { useScrollReveal, revealStyle } from '../hooks/useScrollReveal'
 
+// ── SERVICES DATA ─────────────────────────────────────────────────────────────
+// MANUAL EDIT: Update titles and descriptions here.
+// Keep matching entries updated in index.html Service JSON-LD schema.
 const services = [
   {
     icon: Globe,

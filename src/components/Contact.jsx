@@ -1,8 +1,21 @@
+// ============================================================
+// FILE: Contact.jsx
+// PURPOSE: Lead generation form — primary conversion section
+// SECTION: Public marketing site — bottom of page before Footer
+// DATA: Update valueProps array for right-side trust signals
+// MANUAL EDITS: Safe to update valueProps text and service options
+// SEO: This section targets "start AI website project" search intent
+//      The form id="contact" is referenced in sitemap.xml
+// CLAUDE AUTOMATION: Can wire onSubmit to Supabase leads table
+// ============================================================
+
 import { useForm } from 'react-hook-form'
 import { Clock, Phone, Shield } from 'lucide-react'
 import { useScrollReveal, revealStyle } from '../hooks/useScrollReveal'
 import AOLogo from './AOLogo'
 
+// ── TRUST SIGNALS ─────────────────────────────────────────────────────────────
+// MANUAL EDIT: Update these three value proposition items
 const valueProps = [
   {
     icon: Clock,

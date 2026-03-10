@@ -1,6 +1,19 @@
+// ============================================================
+// FILE: Hero.jsx
+// PURPOSE: Above-the-fold hero section — headline, CTA, metrics
+// SECTION: Public marketing site — first visible section
+// DATA: Update metrics array and headline text below
+// MANUAL EDITS: Safe to update metrics[], headline, subheadline, CTA labels
+// SEO: Contains the page H1 — keep primary keywords in headline
+//      "AI-Powered Websites" and "Run Your Business" are key phrases
+// CLAUDE AUTOMATION: Can A/B test headline copy, update metrics
+// ============================================================
+
 import { useRef, useEffect, useState } from 'react'
 import { useParticleCanvas } from '../hooks/useParticleCanvas'
 
+// ── METRICS BAR DATA ──────────────────────────────────────────────────────────
+// MANUAL EDIT: Update these three stat labels as results improve
 const metrics = [
   '3x More Leads Captured',
   '24/7 AI Response Rate',

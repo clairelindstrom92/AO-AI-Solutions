@@ -1,7 +1,19 @@
+// ============================================================
+// FILE: Nav.jsx
+// PURPOSE: Top navigation bar — logo, links, CTA buttons
+// SECTION: Public marketing site — fixed header
+// DATA: Update links array to add/remove nav items
+// MANUAL EDITS: Safe to update link labels and hrefs in links[]
+// SEO: Nav links support internal linking and crawlability
+// CLAUDE AUTOMATION: Can add Client Login button, portal routes
+// ============================================================
+
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import AOLogo from './AOLogo'
 
+// ── NAV LINKS ─────────────────────────────────────────────────────────────────
+// MANUAL EDIT: Add or remove navigation items here
 const links = [
   { label: 'Services',     href: '#services' },
   { label: 'How It Works', href: '#how-it-works' },
