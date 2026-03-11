@@ -1,0 +1,216 @@
+{
+  "description": "Apollo.io search filter configurations for AO AI Solutions DC outreach campaign",
+  "note": "Copy each search config object and apply filters manually in Apollo.io's People Search. Apollo UI path: Prospecting → People → Filters",
+
+  "searches": [
+    {
+      "list_name": "DC Law Firms - Decision Makers",
+      "target_count": 100,
+      "apollo_filters": {
+        "job_titles": [
+          "Managing Partner",
+          "Partner",
+          "COO",
+          "Chief Operating Officer",
+          "Director of Operations",
+          "Firm Administrator",
+          "Chief of Staff",
+          "IT Director",
+          "Director of Technology"
+        ],
+        "seniority_levels": ["director", "vp", "c_suite", "partner", "owner"],
+        "industries": ["Law Practice", "Legal Services", "Law Firms"],
+        "employee_count_min": 20,
+        "employee_count_max": 200,
+        "locations": [
+          "Washington, DC",
+          "Arlington, VA",
+          "Alexandria, VA",
+          "Bethesda, MD",
+          "Silver Spring, MD",
+          "Rockville, MD",
+          "McLean, VA",
+          "Tysons, VA"
+        ],
+        "location_radius_miles": 30,
+        "keywords_include": ["law firm", "attorney", "litigation", "counsel"],
+        "keywords_exclude": ["paralegal", "legal assistant", "clerk", "intern", "student"],
+        "email_status": ["verified", "likely valid"],
+        "has_phone": true,
+        "technologies": [],
+        "notes": "Prioritize firms with 20-75 attorneys first (higher pain point, lower bureaucracy). Export with: name, title, email, phone, company, company_size, linkedin_url, website"
+      }
+    },
+    {
+      "list_name": "DC Medical Dental MedSpa - Owners",
+      "target_count": 100,
+      "apollo_filters": {
+        "job_titles": [
+          "Practice Owner",
+          "Medical Director",
+          "Dental Practice Owner",
+          "Owner",
+          "Founder",
+          "Office Manager",
+          "Practice Administrator",
+          "Operations Manager",
+          "CEO"
+        ],
+        "seniority_levels": ["owner", "c_suite", "director", "manager"],
+        "industries": [
+          "Medical Practice",
+          "Health, Wellness and Fitness",
+          "Medical Devices",
+          "Hospital & Health Care",
+          "Alternative Medicine",
+          "Mental Health Care"
+        ],
+        "sub_industries_focus": [
+          "dental office",
+          "med spa",
+          "medical spa",
+          "aesthetic medicine",
+          "dermatology",
+          "plastic surgery",
+          "physical therapy",
+          "urgent care",
+          "family practice"
+        ],
+        "employee_count_min": 1,
+        "employee_count_max": 50,
+        "locations": [
+          "Washington, DC",
+          "Arlington, VA",
+          "Alexandria, VA",
+          "Bethesda, MD",
+          "Silver Spring, MD",
+          "Rockville, MD",
+          "Chevy Chase, MD",
+          "Falls Church, VA"
+        ],
+        "location_radius_miles": 25,
+        "keywords_include": ["medical", "dental", "wellness", "health", "spa", "clinic"],
+        "keywords_exclude": ["hospital", "insurance", "pharmaceutical", "biotech", "intern", "resident"],
+        "email_status": ["verified", "likely valid"],
+        "has_phone": true,
+        "notes": "Target independent practices, not hospital systems. Med spas and aesthetic practices are highest priority — fastest ROI for AI booking."
+      }
+    },
+    {
+      "list_name": "Northern Virginia Federal Contractors - Executives",
+      "target_count": 50,
+      "apollo_filters": {
+        "job_titles": [
+          "CEO",
+          "President",
+          "COO",
+          "Chief Operating Officer",
+          "VP of Business Development",
+          "Director of Business Development",
+          "VP of Operations",
+          "IT Director",
+          "Director of Contracts",
+          "Capture Manager",
+          "Growth Officer"
+        ],
+        "seniority_levels": ["c_suite", "vp", "director", "owner"],
+        "industries": [
+          "Defense & Space",
+          "Information Technology and Services",
+          "Computer Software",
+          "Government Administration",
+          "Management Consulting",
+          "Security and Investigations"
+        ],
+        "employee_count_min": 50,
+        "employee_count_max": 500,
+        "locations": [
+          "Arlington, VA",
+          "Alexandria, VA",
+          "McLean, VA",
+          "Reston, VA",
+          "Herndon, VA",
+          "Fairfax, VA",
+          "Chantilly, VA",
+          "Bethesda, MD",
+          "Rockville, MD",
+          "Annapolis Junction, MD"
+        ],
+        "location_radius_miles": 40,
+        "keywords_include": ["government", "federal", "DOD", "defense", "contract", "GovCon", "SBIR", "GSA", "CMMI"],
+        "keywords_exclude": ["staffing only", "temp agency", "intern", "student"],
+        "email_status": ["verified", "likely valid"],
+        "has_phone": true,
+        "notes": "Prioritize firms with active contracts on SAM.gov. NAICS codes to cross-reference: 541511, 541512, 541519, 541330, 541614. Highest value: BD Directors and CEOs of 75-300 person firms."
+      }
+    },
+    {
+      "list_name": "DC Trade Associations Nonprofits - Executive Directors",
+      "target_count": 50,
+      "apollo_filters": {
+        "job_titles": [
+          "Executive Director",
+          "President",
+          "CEO",
+          "Chief Executive Officer",
+          "Director of Operations",
+          "Chief of Staff",
+          "VP of Membership",
+          "Director of Membership",
+          "Communications Director",
+          "Chief Operating Officer"
+        ],
+        "seniority_levels": ["c_suite", "vp", "director", "owner"],
+        "industries": [
+          "Nonprofit Organization Management",
+          "Civic & Social Organization",
+          "Trade Associations",
+          "Government Relations",
+          "Public Policy",
+          "Think Tanks",
+          "Associations"
+        ],
+        "employee_count_min": 5,
+        "employee_count_max": 200,
+        "locations": [
+          "Washington, DC",
+          "Arlington, VA",
+          "Bethesda, MD",
+          "Silver Spring, MD"
+        ],
+        "location_radius_miles": 20,
+        "keywords_include": ["association", "nonprofit", "policy", "advocacy", "member", "foundation", "institute"],
+        "keywords_exclude": ["government agency", "lobbying firm only", "intern", "volunteer"],
+        "email_status": ["verified", "likely valid"],
+        "has_phone": true,
+        "notes": "Focus on associations with 100+ members. They have the most member communication overhead to automate. Avoid pure lobbying firms (different buyer psychology)."
+      }
+    }
+  ],
+
+  "export_fields": [
+    "first_name",
+    "last_name",
+    "title",
+    "email",
+    "email_status",
+    "phone",
+    "company_name",
+    "company_size",
+    "industry",
+    "city",
+    "state",
+    "linkedin_url",
+    "website",
+    "apollo_id"
+  ],
+
+  "quality_filters": {
+    "minimum_email_status": "likely valid",
+    "exclude_do_not_contact": true,
+    "exclude_bounced": true,
+    "exclude_unsubscribed": true
+  },
+
+  "usage_instructions": "1. Log into Apollo.io → Prospecting → People. 2. Apply each filter set. 3. Preview results — adjust if needed. 4. Export with the fields listed above. 5. Upload CSV to HubSpot as a new contact list. 6. Enroll in the appropriate email sequence."
+}

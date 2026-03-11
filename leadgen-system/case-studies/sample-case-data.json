@@ -1,0 +1,19 @@
+{
+  "_comment": "Sample case study data for snippet-generator.py — replace with real client details",
+  "client_name": "Jennifer Walsh",
+  "client_title": "Managing Partner",
+  "company_name": "Walsh & Associates Law",
+  "industry": "Law Firm",
+  "city_state": "Washington, DC",
+  "stat_1_number": "312%",
+  "stat_1_label": "more consultations booked",
+  "stat_1_timeframe": "within 60 days",
+  "stat_2_number": "18 hrs",
+  "stat_2_label": "saved per week on manual intake",
+  "stat_3_number": "$12,400",
+  "stat_3_label": "in additional monthly revenue",
+  "main_problem": "Every inquiry that came in after 5pm went unanswered until the next morning — sometimes 16+ hours later — costing them 3–4 potential clients per week.",
+  "solution_summary": "We deployed a 24/7 AI intake chatbot that qualifies leads, books consultations directly into the firm's calendar, and kicks off a 7-day automated follow-up sequence for every unclosed inquiry.",
+  "quote": "I used to dread Monday mornings because I knew there'd be a pile of missed weekend inquiries. Now the AI handles all of it and I come in to a full calendar. It paid for itself in the first week.",
+  "headline_result": "312% more consultations in 60 days"
+}

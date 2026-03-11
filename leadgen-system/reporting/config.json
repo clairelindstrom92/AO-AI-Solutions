@@ -1,0 +1,28 @@
+{
+  "company": "AO AI Solutions",
+  "website": "https://aoaisolutions.dev",
+  "report_recipients": [
+    "michael.smith@aoaisolutions.dev",
+    "claire.lindstrom@aoaisolutions.dev"
+  ],
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "use_tls": true,
+    "username": "[YOUR_GMAIL_ADDRESS]",
+    "app_password": "[YOUR_GMAIL_APP_PASSWORD]"
+  },
+  "targets": {
+    "email_send_rate": 200,
+    "email_open_rate": 0.35,
+    "email_reply_rate": 0.05,
+    "li_connection_rate": 0.40,
+    "li_response_rate": 0.10,
+    "audits_per_week": 5,
+    "discovery_calls_per_week": 3,
+    "proposals_per_week": 2,
+    "close_rate": 0.30,
+    "target_cpa_dollars": 75.00
+  },
+  "report_output_dir": "./reports"
+}
