@@ -14,11 +14,11 @@ import { useParticleCanvas } from '../hooks/useParticleCanvas'
 import { trackGetWebsiteClick, trackBookDemoClick } from '../lib/analytics'
 
 // ── METRICS BAR DATA ──────────────────────────────────────────────────────────
-// MANUAL EDIT: Update these three stat labels as results improve
+// MANUAL EDIT: Update these labels — only use verified, factual claims
 const metrics = [
-  '3x More Leads Captured',
   '24/7 AI Response Rate',
   '48hr Average Launch',
+  'DC Metro Area',
 ]
 
 export default function Hero() {

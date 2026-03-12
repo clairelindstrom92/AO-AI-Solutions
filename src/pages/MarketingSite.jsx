@@ -11,8 +11,8 @@ import Hero         from '../components/Hero'
 import SocialProof  from '../components/SocialProof'
 import Services     from '../components/Services'
 import HowItWorks   from '../components/HowItWorks'
-import Results      from '../components/Results'
-import Testimonials from '../components/Testimonials'
+// import Results      from '../components/Results'      // Re-enable once real case studies exist
+// import Testimonials from '../components/Testimonials' // Re-enable once real client reviews exist
 import ChatDemo     from '../components/ChatDemo'
 import SmartSites   from '../components/SmartSites'
 import Team         from '../components/Team'
@@ -42,11 +42,11 @@ export default function MarketingSite() {
         {/* Process steps */}
         <HowItWorks />
 
-        {/* Case study results */}
-        <Results />
+        {/* Case study results — hidden until real client data available */}
+        {/* <Results /> */}
 
-        {/* Client testimonials */}
-        <Testimonials />
+        {/* Client testimonials — hidden until real reviews collected */}
+        {/* <Testimonials /> */}
 
         {/* Animated AI chat demo */}
         <ChatDemo />
