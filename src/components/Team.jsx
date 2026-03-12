@@ -20,18 +20,10 @@ const team = [
     initials: 'MS',
     email:    'michael.smith@aoaisolutions.dev',
   },
-  {
-    name:     'Claire Lindstrom',
-    title:    'AI Systems Engineer · Co-Founder',
-    bio:      'Specializes in conversational AI systems, LLM fine-tuning, and building chatbots that actually convert.',
-    initials: 'CL',
-    email:    'claire.lindstrom@aoaisolutions.dev',
-  },
 ]
 
 export default function Team() {
   const [headerRef, headerVisible] = useScrollReveal()
-  const [photoRef,  photoVisible]  = useScrollReveal()
   const [biosRef,   biosVisible]   = useScrollReveal()
 
   return (
@@ -63,53 +55,10 @@ export default function Team() {
           </p>
         </div>
 
-        {/* ── FOUNDERS PHOTO ──────────────────────────────────────── */}
-        {/* SEO: alt text is descriptive and includes full names + company */}
-        {/* MANUAL EDIT: Replace /team.jpg in /public to update the photo */}
-        <div
-          ref={photoRef}
-          className="mb-12 flex justify-center"
-          style={revealStyle(photoVisible)}
-        >
-          <div
-            className="relative rounded-2xl overflow-hidden"
-            style={{
-              maxWidth: '600px',
-              width: '100%',
-              border: '1px solid rgba(0,200,240,0.14)',
-              boxShadow: '0 0 60px rgba(0,200,240,0.08)',
-            }}
-          >
-            <img
-              src="/team.jpg"
-              alt="Michael Smith and Claire Lindstrom, AI Systems Engineers and Co-Founders of AO AI Solutions"
-              className="w-full"
-              width="600"
-              loading="lazy"
-            />
-
-            {/* Bottom gradient overlay for caption legibility */}
-            <div
-              className="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none"
-              style={{
-                background: 'linear-gradient(to top, rgba(6,10,18,0.80) 0%, transparent 100%)',
-              }}
-            />
-
-            {/* ── PHOTO CAPTION ─────────────────────────────────── */}
-            <div className="absolute bottom-5 left-6 right-6 flex justify-between items-end">
-              <div>
-                <div className="font-dm text-xs text-ao-muted">Michael Smith · Claire Lindstrom</div>
-                <div className="font-dm text-xs text-ao-accent mt-0.5">Founders, AO AI Solutions</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* ── FOUNDER BIO CARDS ───────────────────────────────────── */}
         <div
           ref={biosRef}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+          className="grid grid-cols-1 gap-5 max-w-md mx-auto"
         >
           {team.map((person, i) => (
             <div
