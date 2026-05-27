@@ -32,6 +32,117 @@ const TRUST_POINTS = [
   { icon: '🔒', label: 'Enterprise Security' },
 ]
 
+// ─── Responsive CSS injected as a style tag ───────────────────────────────────
+const LANDING_STYLES = `
+  .ao-hero-section {
+    position: relative;
+    min-height: 94vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .ao-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 0;
+  }
+  .ao-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      108deg,
+      rgba(201,217,255,0.97) 0%,
+      rgba(185,207,255,0.94) 28%,
+      rgba(152,183,255,0.80) 52%,
+      rgba(122,156,255,0.30) 72%,
+      rgba(122,156,255,0.00) 100%
+    );
+  }
+  .ao-hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1260px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 110px 64px 88px;
+  }
+  .ao-hero-inner {
+    max-width: 600px;
+  }
+  .ao-cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .ao-badge-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .ao-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+    gap: 22px;
+  }
+  .ao-service-card {
+    background: #fff;
+    border: 1px solid rgba(122,156,255,0.18);
+    border-radius: 18px;
+    padding: 34px 26px;
+    transition: all 0.25s ease;
+    cursor: default;
+  }
+  .ao-service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(122,156,255,0.18);
+    border-color: rgba(212,175,55,0.3);
+  }
+  .ao-form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .ao-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 48px;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .ao-hero-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(201,217,255,0.97) 0%,
+        rgba(185,207,255,0.96) 45%,
+        rgba(130,172,255,0.93) 100%
+      ) !important;
+    }
+    .ao-hero-content {
+      padding: 96px 22px 64px;
+      text-align: center;
+    }
+    .ao-hero-inner {
+      max-width: 100%;
+    }
+    .ao-cta-row {
+      justify-content: center;
+    }
+    .ao-badge-row {
+      justify-content: center;
+    }
+  }
+  @media (max-width: 640px) {
+    .ao-form-grid-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+`
+
 export default function LandingPage() {
   const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', service: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
@@ -69,13 +180,16 @@ export default function LandingPage() {
         setFormError('Something went wrong. Please email us directly at Michael.smith@aoaisolutions.dev')
       }
     } catch {
-      setFormError('Network error. Please email us directly at Michael.smith@aoaisolutions.dev')
+      setFormError('Network error. Please email us at Michael.smith@aoaisolutions.dev')
     }
     setSubmitting(false)
   }
 
   return (
     <div style={{ fontFamily: "'DM Sans', 'Inter', sans-serif", background: '#fff', color: '#0F1115', overflowX: 'hidden' }}>
+
+      {/* ── Injected responsive styles ──────────────────────────────────────── */}
+      <style>{LANDING_STYLES}</style>
 
       {/* ── Announcement Banner ─────────────────────────────────────────────── */}
       <div style={{
@@ -112,228 +226,173 @@ export default function LandingPage() {
             AI SOLUTIONS
           </span>
         </div>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <a href="tel:2024253161" style={{ fontSize: '13px', color: '#4A5568', textDecoration: 'none', fontWeight: 500, display: 'none' }}>
-            202.425.3161
-          </a>
-          <a
-            href="#contact"
-            style={{
-              background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-              color: '#0F1115',
-              padding: '10px 22px',
-              borderRadius: '50px',
-              fontWeight: 700,
-              fontSize: '13px',
-              textDecoration: 'none',
-              letterSpacing: '0.04em',
-              boxShadow: '0 4px 16px rgba(212,175,55,0.3)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            Book Consultation →
-          </a>
-        </div>
+        <a
+          href="#contact"
+          style={{
+            background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
+            color: '#0F1115',
+            padding: '10px 22px',
+            borderRadius: '50px',
+            fontWeight: 700,
+            fontSize: '13px',
+            textDecoration: 'none',
+            letterSpacing: '0.04em',
+            boxShadow: '0 4px 16px rgba(212,175,55,0.3)',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          Book Consultation →
+        </a>
       </nav>
 
-      {/* ── Hero ────────────────────────────────────────────────────────────── */}
-      <section style={{
-        background: 'linear-gradient(145deg, #D8E6FF 0%, #C2D5FF 35%, #8AACFF 70%, #7A9CFF 100%)',
-        minHeight: '94vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '100px 24px 80px',
-        textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        {/* Background glow layers */}
-        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-          <div style={{
-            position: 'absolute', top: '50%', left: '50%',
-            transform: 'translate(-50%,-50%)',
-            width: '1000px', height: '800px',
-            background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.5) 0%, transparent 65%)',
-          }} />
-          <div style={{
-            position: 'absolute', top: '-200px', right: '-200px',
-            width: '600px', height: '600px',
-            background: 'radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%)',
-            borderRadius: '50%',
-          }} />
-          <div style={{
-            position: 'absolute', bottom: '-100px', left: '-100px',
-            width: '500px', height: '500px',
-            background: 'radial-gradient(circle, rgba(122,156,255,0.3) 0%, transparent 70%)',
-            borderRadius: '50%',
-          }} />
-        </div>
+      {/* ══════════════════════════════════════════════════════════════════════ */}
+      {/* ── HERO — Full-bleed image + brand gradient overlay ─────────────── */}
+      {/* ══════════════════════════════════════════════════════════════════════ */}
+      <section className="ao-hero-section">
+
+        {/* Hero photograph — fills the section */}
+        <img
+          src="/hero-launch.jpg"
+          alt=""
+          className="ao-hero-img"
+          aria-hidden="true"
+        />
+
+        {/* Brand blue gradient overlay — opaque on content side, reveals image on right */}
+        <div className="ao-hero-overlay" />
+
+        {/* Extra radial glow on text side */}
+        <div style={{
+          position: 'absolute',
+          top: '50%', left: '15%',
+          transform: 'translate(-50%, -50%)',
+          width: '700px', height: '600px',
+          background: 'radial-gradient(ellipse, rgba(255,255,255,0.3) 0%, transparent 65%)',
+          pointerEvents: 'none',
+          zIndex: 2,
+        }} />
 
         {/* Launching badge */}
         <div style={{
-          position: 'absolute', top: '28px', right: '32px',
-          background: 'rgba(255,255,255,0.7)',
-          border: '1px solid rgba(212,175,55,0.5)',
-          backdropFilter: 'blur(8px)',
+          position: 'absolute', top: '24px', right: '28px',
+          background: 'rgba(255,255,255,0.78)',
+          border: '1px solid rgba(212,175,55,0.55)',
+          backdropFilter: 'blur(10px)',
           borderRadius: '50px',
-          padding: '6px 16px',
+          padding: '7px 18px',
           fontSize: '11px',
           fontWeight: 700,
           letterSpacing: '0.12em',
-          color: '#B8941F',
+          color: '#8A6B1A',
           textTransform: 'uppercase',
+          zIndex: 20,
         }}>
           🚀 Launching 2025
         </div>
 
-        <div style={{ position: 'relative', zIndex: 10, maxWidth: '880px', animation: 'fadeIn 0.8s ease both' }}>
-          {/* Logo */}
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px', animation: 'fadeIn 0.7s ease 0.1s both' }}>
-            <AOLogo
-              color="#D4AF37"
-              style={{
-                height: '110px',
-                width: 'auto',
-                filter: 'drop-shadow(0 8px 32px rgba(212,175,55,0.45))',
-              }}
-            />
-          </div>
+        {/* Content */}
+        <div className="ao-hero-content">
+          <div className="ao-hero-inner">
 
-          {/* Eyebrow */}
-          <p style={{
-            fontSize: '13px',
-            fontWeight: 700,
-            letterSpacing: '0.32em',
-            color: '#8A6B1A',
-            textTransform: 'uppercase',
-            marginBottom: '18px',
-            animation: 'fadeUp 0.7s ease 0.2s both',
-          }}>
-            AI SOLUTIONS
-          </p>
+            {/* Logo */}
+            <div style={{ marginBottom: '22px' }}>
+              <AOLogo
+                color="#D4AF37"
+                style={{
+                  height: '100px',
+                  width: 'auto',
+                  filter: 'drop-shadow(0 6px 24px rgba(212,175,55,0.5))',
+                }}
+              />
+            </div>
 
-          {/* H1 */}
-          <h1 style={{
-            fontSize: 'clamp(38px, 6.5vw, 72px)',
-            fontWeight: 800,
-            lineHeight: 1.08,
-            color: '#0F1115',
-            marginBottom: '22px',
-            letterSpacing: '-0.02em',
-            animation: 'fadeUp 0.7s ease 0.3s both',
-          }}>
-            Alpha Omega<br />Artificial Intelligence
-          </h1>
+            {/* Eyebrow */}
+            <p style={{
+              fontSize: '12px', fontWeight: 700, letterSpacing: '0.32em',
+              color: '#7A5C12', textTransform: 'uppercase', marginBottom: '16px',
+            }}>
+              AI SOLUTIONS
+            </p>
 
-          {/* Subhead */}
-          <p style={{
-            fontSize: 'clamp(16px, 2.2vw, 21px)',
-            color: '#1A2332',
-            marginBottom: '8px',
-            fontWeight: 400,
-            lineHeight: 1.5,
-            animation: 'fadeUp 0.7s ease 0.4s both',
-          }}>
-            End-to-end AI systems, automation, lead capture,
-          </p>
-          <p style={{
-            fontSize: 'clamp(15px, 2vw, 19px)',
-            color: '#2D3748',
-            marginBottom: '52px',
-            fontWeight: 300,
-            animation: 'fadeUp 0.7s ease 0.5s both',
-          }}>
-            and digital infrastructure for modern businesses.
-          </p>
+            {/* H1 */}
+            <h1 style={{
+              fontSize: 'clamp(36px, 5.5vw, 70px)',
+              fontWeight: 800, lineHeight: 1.08, color: '#0F1115',
+              marginBottom: '20px', letterSpacing: '-0.02em',
+            }}>
+              Alpha Omega<br />Artificial Intelligence
+            </h1>
 
-          {/* CTA Buttons */}
-          <div style={{
-            display: 'flex',
-            gap: '14px',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            marginBottom: '56px',
-            animation: 'fadeUp 0.7s ease 0.6s both',
-          }}>
-            <a
-              href="#contact"
-              style={{
-                background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-                color: '#0F1115',
-                padding: '15px 34px',
-                borderRadius: '50px',
-                fontWeight: 700,
-                fontSize: '15px',
-                textDecoration: 'none',
-                boxShadow: '0 8px 28px rgba(212,175,55,0.4)',
-                letterSpacing: '0.04em',
-                transition: 'all 0.2s',
-              }}
-            >
-              Book Consultation →
-            </a>
-            <a
-              href="#contact"
-              style={{
-                border: '2px solid rgba(15,17,21,0.35)',
-                color: '#0F1115',
-                padding: '15px 34px',
-                borderRadius: '50px',
-                fontWeight: 600,
-                fontSize: '15px',
-                textDecoration: 'none',
-                letterSpacing: '0.03em',
-                background: 'rgba(255,255,255,0.5)',
-                backdropFilter: 'blur(4px)',
-              }}
-            >
-              Request Proposal
-            </a>
-            <a
-              href="tel:2024253161"
-              style={{
-                border: '2px solid rgba(212,175,55,0.5)',
-                color: '#8A6B1A',
-                padding: '15px 34px',
-                borderRadius: '50px',
-                fontWeight: 600,
-                fontSize: '15px',
-                textDecoration: 'none',
-                letterSpacing: '0.03em',
-                background: 'rgba(255,255,255,0.4)',
-                backdropFilter: 'blur(4px)',
-              }}
-            >
-              📞 Contact Directly
-            </a>
-          </div>
+            {/* Subhead */}
+            <p style={{
+              fontSize: 'clamp(15px, 1.9vw, 20px)', color: '#1A2332',
+              marginBottom: '8px', fontWeight: 400, lineHeight: 1.55,
+            }}>
+              End-to-end AI systems, automation, lead capture,
+            </p>
+            <p style={{
+              fontSize: 'clamp(14px, 1.7vw, 18px)', color: '#2D3748',
+              marginBottom: '40px', fontWeight: 300,
+            }}>
+              and digital infrastructure for modern businesses.
+            </p>
 
-          {/* Trust Badges */}
-          <div style={{
-            display: 'flex',
-            gap: '10px',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            animation: 'fadeUp 0.7s ease 0.75s both',
-          }}>
-            {TRUST_POINTS.map(t => (
-              <div key={t.label} style={{
-                background: 'rgba(255,255,255,0.68)',
-                border: '1px solid rgba(212,175,55,0.3)',
-                backdropFilter: 'blur(8px)',
-                borderRadius: '50px',
-                padding: '8px 18px',
-                fontSize: '13px',
-                fontWeight: 500,
-                color: '#0F1115',
-              }}>
-                {t.icon} &nbsp; {t.label}
-              </div>
-            ))}
+            {/* CTA Buttons */}
+            <div className="ao-cta-row" style={{ marginBottom: '32px' }}>
+              <a
+                href="#contact"
+                style={{
+                  background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
+                  color: '#0F1115', padding: '15px 32px', borderRadius: '50px',
+                  fontWeight: 700, fontSize: '15px', textDecoration: 'none',
+                  boxShadow: '0 8px 24px rgba(212,175,55,0.45)', letterSpacing: '0.04em',
+                }}
+              >
+                Book Consultation →
+              </a>
+              <a
+                href="#contact"
+                style={{
+                  border: '2px solid rgba(15,17,21,0.35)', color: '#0F1115',
+                  padding: '15px 32px', borderRadius: '50px', fontWeight: 600,
+                  fontSize: '15px', textDecoration: 'none',
+                  background: 'rgba(255,255,255,0.58)', backdropFilter: 'blur(4px)',
+                }}
+              >
+                Request Proposal
+              </a>
+              <a
+                href="tel:2024253161"
+                style={{
+                  border: '2px solid rgba(212,175,55,0.55)', color: '#7A5C12',
+                  padding: '15px 32px', borderRadius: '50px', fontWeight: 600,
+                  fontSize: '15px', textDecoration: 'none',
+                  background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(4px)',
+                }}
+              >
+                📞 Contact Directly
+              </a>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="ao-badge-row">
+              {TRUST_POINTS.map(t => (
+                <div key={t.label} style={{
+                  background: 'rgba(255,255,255,0.7)',
+                  border: '1px solid rgba(212,175,55,0.32)',
+                  backdropFilter: 'blur(8px)',
+                  borderRadius: '50px', padding: '8px 16px',
+                  fontSize: '12px', fontWeight: 500, color: '#0F1115',
+                }}>
+                  {t.icon} &nbsp; {t.label}
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
+      {/* ══════════════════════════════════════════════════════════════════════ */}
 
       {/* ── About / Authority ───────────────────────────────────────────────── */}
       <section style={{ padding: '96px 24px', background: '#fff', textAlign: 'center' }}>
@@ -369,31 +428,11 @@ export default function LandingPage() {
             </p>
             <div style={{ width: '52px', height: '3px', background: 'linear-gradient(90deg, #D4AF37, #E8C84A)', borderRadius: '4px', margin: '20px auto 0' }} />
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(248px, 1fr))', gap: '22px' }}>
-            {SERVICES.map((s, i) => (
-              <div
-                key={s.title}
-                style={{
-                  background: '#fff',
-                  border: '1px solid rgba(122,156,255,0.18)',
-                  borderRadius: '18px',
-                  padding: '34px 26px',
-                  transition: 'all 0.25s ease',
-                  cursor: 'default',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-4px)'
-                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(122,156,255,0.18)'
-                  e.currentTarget.style.borderColor = 'rgba(212,175,55,0.3)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = 'none'
-                  e.currentTarget.style.borderColor = 'rgba(122,156,255,0.18)'
-                }}
-              >
+          <div className="ao-services-grid">
+            {SERVICES.map(s => (
+              <div key={s.title} className="ao-service-card">
                 <div style={{ fontSize: '34px', marginBottom: '14px' }}>{s.icon}</div>
-                <h3 style={{ fontSize: '15px', fontWeight: 700, color: '#0F1115', marginBottom: '10px', letterSpacing: '0.01em' }}>{s.title}</h3>
+                <h3 style={{ fontSize: '15px', fontWeight: 700, color: '#0F1115', marginBottom: '10px' }}>{s.title}</h3>
                 <p style={{ fontSize: '13px', color: '#718096', lineHeight: 1.75, fontWeight: 300 }}>{s.desc}</p>
               </div>
             ))}
@@ -419,51 +458,39 @@ export default function LandingPage() {
 
           {submitted ? (
             <div style={{
-              textAlign: 'center',
-              padding: '56px 32px',
+              textAlign: 'center', padding: '56px 32px',
               background: 'linear-gradient(145deg, #D8E6FF, #EEF3FF)',
-              borderRadius: '24px',
-              border: '1px solid rgba(212,175,55,0.3)',
+              borderRadius: '24px', border: '1px solid rgba(212,175,55,0.3)',
             }}>
               <div style={{ fontSize: '54px', marginBottom: '20px' }}>✅</div>
               <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#0F1115', marginBottom: '10px' }}>Message Received!</h3>
               <p style={{ color: '#4A5568', fontWeight: 300, fontSize: '16px', lineHeight: 1.6 }}>
-                We'll be in touch within 24 hours to schedule your free strategy call.<br />We look forward to building with you.
+                We'll be in touch within 24 hours to schedule your free strategy call.
               </p>
             </div>
           ) : (
             <form
               onSubmit={handleSubmit}
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '18px',
-                background: '#fff',
-                borderRadius: '24px',
-                padding: '40px',
+                display: 'flex', flexDirection: 'column', gap: '18px',
+                background: '#fff', borderRadius: '24px', padding: '40px',
                 border: '1px solid rgba(122,156,255,0.15)',
                 boxShadow: '0 8px 40px rgba(122,156,255,0.12)',
               }}
             >
               {/* Row: Name + Company */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="ao-form-grid-2">
                 {[
                   { key: 'name', label: 'Full Name *', placeholder: 'Jane Smith', type: 'text', required: true },
                   { key: 'company', label: 'Company Name *', placeholder: 'Acme Corp', type: 'text', required: true },
                 ].map(f => (
                   <div key={f.key}>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{f.label}</label>
+                    <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{f.label}</label>
                     <input
-                      type={f.type}
-                      required={f.required}
-                      placeholder={f.placeholder}
+                      type={f.type} required={f.required} placeholder={f.placeholder}
                       value={form[f.key]}
                       onChange={e => setForm(p => ({ ...p, [f.key]: e.target.value }))}
-                      style={{
-                        width: '100%', padding: '12px 14px', borderRadius: '10px',
-                        border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115',
-                        outline: 'none', fontFamily: 'inherit', transition: 'border-color 0.2s, box-shadow 0.2s',
-                      }}
+                      style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115', outline: 'none', fontFamily: 'inherit', transition: 'border-color 0.2s, box-shadow 0.2s', boxSizing: 'border-box' }}
                       onFocus={e => { e.target.style.borderColor = '#D4AF37'; e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.1)' }}
                       onBlur={e => { e.target.style.borderColor = '#E2E8F0'; e.target.style.boxShadow = 'none' }}
                     />
@@ -472,24 +499,18 @@ export default function LandingPage() {
               </div>
 
               {/* Row: Email + Phone */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="ao-form-grid-2">
                 {[
                   { key: 'email', label: 'Email *', placeholder: 'jane@company.com', type: 'email', required: true },
                   { key: 'phone', label: 'Phone (Optional)', placeholder: '202-000-0000', type: 'tel', required: false },
                 ].map(f => (
                   <div key={f.key}>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{f.label}</label>
+                    <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{f.label}</label>
                     <input
-                      type={f.type}
-                      required={f.required}
-                      placeholder={f.placeholder}
+                      type={f.type} required={f.required} placeholder={f.placeholder}
                       value={form[f.key]}
                       onChange={e => setForm(p => ({ ...p, [f.key]: e.target.value }))}
-                      style={{
-                        width: '100%', padding: '12px 14px', borderRadius: '10px',
-                        border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115',
-                        outline: 'none', fontFamily: 'inherit', transition: 'border-color 0.2s, box-shadow 0.2s',
-                      }}
+                      style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115', outline: 'none', fontFamily: 'inherit', transition: 'border-color 0.2s, box-shadow 0.2s', boxSizing: 'border-box' }}
                       onFocus={e => { e.target.style.borderColor = '#D4AF37'; e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.1)' }}
                       onBlur={e => { e.target.style.borderColor = '#E2E8F0'; e.target.style.boxShadow = 'none' }}
                     />
@@ -499,18 +520,13 @@ export default function LandingPage() {
 
               {/* Service Interest */}
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                   Service Interest
                 </label>
                 <select
                   value={form.service}
                   onChange={e => setForm(p => ({ ...p, service: e.target.value }))}
-                  style={{
-                    width: '100%', padding: '12px 14px', borderRadius: '10px',
-                    border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115',
-                    outline: 'none', fontFamily: 'inherit', background: '#fff',
-                    transition: 'border-color 0.2s, box-shadow 0.2s',
-                  }}
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115', outline: 'none', fontFamily: 'inherit', background: '#fff', transition: 'border-color 0.2s, box-shadow 0.2s' }}
                   onFocus={e => { e.target.style.borderColor = '#D4AF37'; e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.1)' }}
                   onBlur={e => { e.target.style.borderColor = '#E2E8F0'; e.target.style.boxShadow = 'none' }}
                 >
@@ -530,7 +546,7 @@ export default function LandingPage() {
 
               {/* Message */}
               <div>
-                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                   Tell Us About Your Project
                 </label>
                 <textarea
@@ -538,12 +554,7 @@ export default function LandingPage() {
                   placeholder="Describe your business goals and what you'd like to build..."
                   value={form.message}
                   onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
-                  style={{
-                    width: '100%', padding: '12px 14px', borderRadius: '10px',
-                    border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115',
-                    outline: 'none', fontFamily: 'inherit', resize: 'vertical',
-                    transition: 'border-color 0.2s, box-shadow 0.2s', lineHeight: 1.6,
-                  }}
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115', outline: 'none', fontFamily: 'inherit', resize: 'vertical', transition: 'border-color 0.2s, box-shadow 0.2s', lineHeight: 1.6, boxSizing: 'border-box' }}
                   onFocus={e => { e.target.style.borderColor = '#D4AF37'; e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.1)' }}
                   onBlur={e => { e.target.style.borderColor = '#E2E8F0'; e.target.style.boxShadow = 'none' }}
                 />
@@ -558,24 +569,16 @@ export default function LandingPage() {
                 disabled={submitting}
                 style={{
                   background: submitting ? 'rgba(212,175,55,0.6)' : 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-                  color: '#0F1115',
-                  padding: '16px 36px',
-                  borderRadius: '50px',
-                  fontWeight: 700,
-                  fontSize: '15px',
-                  border: 'none',
+                  color: '#0F1115', padding: '16px 36px', borderRadius: '50px',
+                  fontWeight: 700, fontSize: '15px', border: 'none',
                   cursor: submitting ? 'not-allowed' : 'pointer',
-                  letterSpacing: '0.04em',
-                  boxShadow: '0 6px 24px rgba(212,175,55,0.35)',
-                  transition: 'all 0.2s',
-                  fontFamily: 'inherit',
-                  width: '100%',
+                  letterSpacing: '0.04em', boxShadow: '0 6px 24px rgba(212,175,55,0.35)',
+                  transition: 'all 0.2s', fontFamily: 'inherit', width: '100%',
                 }}
               >
                 {submitting ? 'Sending...' : 'Submit Consultation Request →'}
               </button>
 
-              {/* Direct contact fallback */}
               <p style={{ textAlign: 'center', fontSize: '12px', color: '#718096', fontWeight: 300 }}>
                 Or reach us directly: &nbsp;
                 <a href="tel:2024253161" style={{ color: '#D4AF37', fontWeight: 600, textDecoration: 'none' }}>202.425.3161</a>
@@ -591,8 +594,7 @@ export default function LandingPage() {
       <section style={{
         padding: '80px 24px 96px',
         background: 'linear-gradient(145deg, #C9D9FF 0%, #8AACFF 50%, #7A9CFF 100%)',
-        position: 'relative',
-        overflow: 'hidden',
+        position: 'relative', overflow: 'hidden',
       }}>
         <div style={{
           position: 'absolute', inset: 0, pointerEvents: 'none',
@@ -607,15 +609,12 @@ export default function LandingPage() {
               Ready to Connect?
             </h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '48px', alignItems: 'center' }}>
+          <div className="ao-contact-grid">
 
             {/* Digital Contact Card */}
             <div style={{
-              background: 'rgba(255,255,255,0.94)',
-              borderRadius: '28px',
-              padding: '44px 36px',
-              boxShadow: '0 24px 72px rgba(0,0,0,0.12)',
-              border: '1px solid rgba(212,175,55,0.3)',
+              background: 'rgba(255,255,255,0.94)', borderRadius: '28px', padding: '44px 36px',
+              boxShadow: '0 24px 72px rgba(0,0,0,0.12)', border: '1px solid rgba(212,175,55,0.3)',
               backdropFilter: 'blur(12px)',
             }}>
               <div style={{ marginBottom: '24px' }}>
@@ -626,62 +625,18 @@ export default function LandingPage() {
                 Founder & AI Systems Engineer
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <a href="tel:2024253161" style={{
-                  display: 'flex', alignItems: 'center', gap: '14px',
-                  color: '#0F1115', textDecoration: 'none', fontSize: '15px', fontWeight: 500,
-                }}>
-                  <span style={{
-                    background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-                    borderRadius: '12px', width: '44px', height: '44px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '18px', flexShrink: 0, boxShadow: '0 4px 12px rgba(212,175,55,0.3)',
-                  }}>📞</span>
-                  202.425.3161
-                </a>
-                <a href="mailto:Michael.smith@aoaisolutions.dev" style={{
-                  display: 'flex', alignItems: 'center', gap: '14px',
-                  color: '#0F1115', textDecoration: 'none', fontSize: '14px', fontWeight: 500, wordBreak: 'break-all',
-                }}>
-                  <span style={{
-                    background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-                    borderRadius: '12px', width: '44px', height: '44px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '18px', flexShrink: 0, boxShadow: '0 4px 12px rgba(212,175,55,0.3)',
-                  }}>✉️</span>
-                  Michael.smith@aoaisolutions.dev
-                </a>
-                <a href="https://aoaisolutions.dev" style={{
-                  display: 'flex', alignItems: 'center', gap: '14px',
-                  color: '#0F1115', textDecoration: 'none', fontSize: '15px', fontWeight: 500,
-                }}>
-                  <span style={{
-                    background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-                    borderRadius: '12px', width: '44px', height: '44px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '18px', flexShrink: 0, boxShadow: '0 4px 12px rgba(212,175,55,0.3)',
-                  }}>🌐</span>
-                  aoaisolutions.dev
-                </a>
+                {[
+                  { href: 'tel:2024253161', icon: '📞', label: '202.425.3161' },
+                  { href: 'mailto:Michael.smith@aoaisolutions.dev', icon: '✉️', label: 'Michael.smith@aoaisolutions.dev' },
+                  { href: 'https://aoaisolutions.dev', icon: '🌐', label: 'aoaisolutions.dev' },
+                ].map(c => (
+                  <a key={c.href} href={c.href} style={{ display: 'flex', alignItems: 'center', gap: '14px', color: '#0F1115', textDecoration: 'none', fontSize: '14px', fontWeight: 500, wordBreak: 'break-all' }}>
+                    <span style={{ background: 'linear-gradient(135deg, #D4AF37, #E8C84A)', borderRadius: '12px', width: '44px', height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0, boxShadow: '0 4px 12px rgba(212,175,55,0.3)' }}>{c.icon}</span>
+                    {c.label}
+                  </a>
+                ))}
               </div>
-
-              {/* Save Contact Button */}
-              <a
-                href="#contact"
-                style={{
-                  display: 'block',
-                  marginTop: '28px',
-                  background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-                  color: '#0F1115',
-                  padding: '13px 24px',
-                  borderRadius: '50px',
-                  fontWeight: 700,
-                  fontSize: '14px',
-                  textDecoration: 'none',
-                  textAlign: 'center',
-                  boxShadow: '0 6px 20px rgba(212,175,55,0.35)',
-                  letterSpacing: '0.04em',
-                }}
-              >
+              <a href="#contact" style={{ display: 'block', marginTop: '28px', background: 'linear-gradient(135deg, #D4AF37, #E8C84A)', color: '#0F1115', padding: '13px 24px', borderRadius: '50px', fontWeight: 700, fontSize: '14px', textDecoration: 'none', textAlign: 'center', boxShadow: '0 6px 20px rgba(212,175,55,0.35)', letterSpacing: '0.04em' }}>
                 Book a Consultation →
               </a>
             </div>
@@ -691,20 +646,11 @@ export default function LandingPage() {
               <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: '#7A5C12', textTransform: 'uppercase', marginBottom: '20px' }}>
                 📱 Scan to Connect
               </p>
-              <div style={{
-                display: 'inline-block',
-                background: '#fff',
-                borderRadius: '24px',
-                padding: '22px',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.14)',
-                border: '3px solid rgba(212,175,55,0.45)',
-              }}>
-                {/* Real QR Code via qrserver.com API */}
+              <div style={{ display: 'inline-block', background: '#fff', borderRadius: '24px', padding: '22px', boxShadow: '0 20px 60px rgba(0,0,0,0.14)', border: '3px solid rgba(212,175,55,0.45)' }}>
                 <img
                   src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Faoaisolutions.dev%23contact&size=240x240&format=png&margin=8&qzone=1&color=0F1115&bgcolor=FFFFFF"
                   alt="AOAI Solutions QR Code — Scan to book a consultation"
-                  width={240}
-                  height={240}
+                  width={240} height={240}
                   style={{ display: 'block', borderRadius: '10px' }}
                   loading="eager"
                 />
@@ -713,12 +659,8 @@ export default function LandingPage() {
                 Scan to book a consultation,<br />view services, or save contact info
               </p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginTop: '20px', flexWrap: 'wrap' }}>
-                <a href="tel:2024253161" style={{ background: 'rgba(255,255,255,0.75)', border: '1px solid rgba(212,175,55,0.4)', borderRadius: '50px', padding: '8px 18px', fontSize: '13px', fontWeight: 600, color: '#0F1115', textDecoration: 'none' }}>
-                  📞 Call Now
-                </a>
-                <a href="mailto:Michael.smith@aoaisolutions.dev" style={{ background: 'rgba(255,255,255,0.75)', border: '1px solid rgba(212,175,55,0.4)', borderRadius: '50px', padding: '8px 18px', fontSize: '13px', fontWeight: 600, color: '#0F1115', textDecoration: 'none' }}>
-                  ✉️ Email
-                </a>
+                <a href="tel:2024253161" style={{ background: 'rgba(255,255,255,0.75)', border: '1px solid rgba(212,175,55,0.4)', borderRadius: '50px', padding: '8px 18px', fontSize: '13px', fontWeight: 600, color: '#0F1115', textDecoration: 'none' }}>📞 Call Now</a>
+                <a href="mailto:Michael.smith@aoaisolutions.dev" style={{ background: 'rgba(255,255,255,0.75)', border: '1px solid rgba(212,175,55,0.4)', borderRadius: '50px', padding: '8px 18px', fontSize: '13px', fontWeight: 600, color: '#0F1115', textDecoration: 'none' }}>✉️ Email</a>
               </div>
             </div>
 
@@ -745,7 +687,7 @@ export default function LandingPage() {
             { label: '202.425.3161', href: 'tel:2024253161' },
             { label: 'Email Us', href: 'mailto:Michael.smith@aoaisolutions.dev' },
           ].map(l => (
-            <a key={l.label} href={l.href} style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px', transition: 'color 0.2s' }}
+            <a key={l.label} href={l.href} style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}
               onMouseEnter={e => e.target.style.color = '#D4AF37'}
               onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.5)'}
             >
