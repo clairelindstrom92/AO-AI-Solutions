@@ -6,11 +6,10 @@
 // ============================================================
 
 import { useState, useEffect } from 'react'
-import AOLogo from '../components/AOLogo'
 
 // ─── TODO: Replace with your real Formspree endpoint ─────────────────────────
 // 1. Go to https://formspree.io → New Form → copy the endpoint ID
-// 2. Replace 'YOUR_FORMSPREE_ID' below with your actual ID (e.g. 'xkgbndjp')
+// 2. Replace 'YOUR_FORMSPREE_ID' below with your actual ID
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ID'
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -32,8 +31,12 @@ const TRUST_POINTS = [
   { icon: '🔒', label: 'Enterprise Security' },
 ]
 
-// ─── Responsive CSS injected as a style tag ───────────────────────────────────
+// ─── Responsive CSS ──────────────────────────────────────────────────────────
 const LANDING_STYLES = `
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&display=swap');
+
+  .ao-page * { box-sizing: border-box; margin: 0; padding: 0; }
+
   .ao-hero-section {
     position: relative;
     min-height: 94vh;
@@ -59,7 +62,7 @@ const LANDING_STYLES = `
       rgba(201,217,255,0.97) 0%,
       rgba(185,207,255,0.94) 28%,
       rgba(152,183,255,0.80) 52%,
-      rgba(122,156,255,0.30) 72%,
+      rgba(122,156,255,0.28) 72%,
       rgba(122,156,255,0.00) 100%
     );
   }
@@ -71,9 +74,34 @@ const LANDING_STYLES = `
     margin: 0 auto;
     padding: 110px 64px 88px;
   }
-  .ao-hero-inner {
-    max-width: 600px;
+  .ao-hero-inner { max-width: 600px; }
+
+  /* Brand logo images */
+  .ao-logo-nav {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    display: block;
   }
+  .ao-logo-hero {
+    height: 120px;
+    width: auto;
+    max-width: 320px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 8px 32px rgba(212,175,55,0.45));
+    margin-bottom: 24px;
+  }
+  .ao-logo-footer {
+    height: 72px;
+    width: auto;
+    max-width: 260px;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 4px 16px rgba(212,175,55,0.3));
+    margin: 0 auto 20px;
+  }
+
   .ao-cta-row {
     display: flex;
     gap: 14px;
@@ -113,6 +141,8 @@ const LANDING_STYLES = `
     gap: 48px;
     align-items: center;
   }
+  .ao-nav-label { display: inline-block; }
+
   @media (max-width: 900px) {
     .ao-hero-overlay {
       background: linear-gradient(
@@ -126,20 +156,16 @@ const LANDING_STYLES = `
       padding: 96px 22px 64px;
       text-align: center;
     }
-    .ao-hero-inner {
-      max-width: 100%;
-    }
-    .ao-cta-row {
-      justify-content: center;
-    }
-    .ao-badge-row {
-      justify-content: center;
-    }
+    .ao-hero-inner { max-width: 100%; }
+    .ao-logo-hero { margin: 0 auto 24px; }
+    .ao-cta-row { justify-content: center; }
+    .ao-badge-row { justify-content: center; }
+    .ao-nav-label { display: none; }
   }
   @media (max-width: 640px) {
-    .ao-form-grid-2 {
-      grid-template-columns: 1fr;
-    }
+    .ao-form-grid-2 { grid-template-columns: 1fr; }
+    .ao-logo-nav { height: 40px; }
+    .ao-logo-hero { height: 88px; }
   }
 `
 
@@ -165,146 +191,102 @@ export default function LandingPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          name: form.name,
-          company: form.company,
-          email: form.email,
-          phone: form.phone,
-          service: form.service,
-          message: form.message,
+          name: form.name, company: form.company, email: form.email,
+          phone: form.phone, service: form.service, message: form.message,
           _subject: `[AOAI] New Consultation Request — ${form.name}`,
         }),
       })
-      if (res.ok) {
-        setSubmitted(true)
-      } else {
-        setFormError('Something went wrong. Please email us directly at Michael.smith@aoaisolutions.dev')
-      }
-    } catch {
-      setFormError('Network error. Please email us at Michael.smith@aoaisolutions.dev')
-    }
+      if (res.ok) { setSubmitted(true) }
+      else { setFormError('Something went wrong. Please email us directly at Michael.smith@aoaisolutions.dev') }
+    } catch { setFormError('Network error. Please email Michael.smith@aoaisolutions.dev') }
     setSubmitting(false)
   }
 
   return (
-    <div style={{ fontFamily: "'DM Sans', 'Inter', sans-serif", background: '#fff', color: '#0F1115', overflowX: 'hidden' }}>
+    <div className="ao-page" style={{ fontFamily: "'DM Sans', 'Inter', sans-serif", background: '#fff', color: '#0F1115', overflowX: 'hidden' }}>
 
-      {/* ── Injected responsive styles ──────────────────────────────────────── */}
       <style>{LANDING_STYLES}</style>
 
       {/* ── Announcement Banner ─────────────────────────────────────────────── */}
       <div style={{
         background: 'linear-gradient(90deg, #B8941F 0%, #D4AF37 40%, #E8C84A 60%, #D4AF37 80%, #B8941F 100%)',
-        padding: '9px 24px',
-        textAlign: 'center',
-        fontSize: '12px',
-        fontWeight: 700,
-        letterSpacing: '0.1em',
-        color: '#0F1115',
-        textTransform: 'uppercase',
+        padding: '9px 24px', textAlign: 'center', fontSize: '12px',
+        fontWeight: 700, letterSpacing: '0.1em', color: '#0F1115', textTransform: 'uppercase',
       }}>
         ✦ &nbsp; Launching 2025 — Pre-Launch Consultations Now Booking &nbsp; ✦
       </div>
 
       {/* ── Sticky Nav ──────────────────────────────────────────────────────── */}
       <nav style={{
-        padding: '16px 40px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
+        padding: '14px 36px', display: 'flex', alignItems: 'center',
+        justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 100,
         background: scrolled ? 'rgba(255,255,255,0.97)' : 'rgba(255,255,255,0.95)',
         backdropFilter: 'blur(16px)',
         borderBottom: scrolled ? '1px solid rgba(212,175,55,0.2)' : '1px solid transparent',
         transition: 'all 0.3s ease',
         boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.06)' : 'none',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <AOLogo color="#D4AF37" style={{ height: '44px', width: 'auto' }} />
-          <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', color: '#B8941F', textTransform: 'uppercase' }}>
+        {/* Real brand logo — transparent background version for light nav */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <img
+            src="/logo-transparent.png"
+            alt="AOAI Solutions"
+            className="ao-logo-nav"
+          />
+          <span className="ao-nav-label" style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', color: '#B8941F', textTransform: 'uppercase' }}>
             AI SOLUTIONS
           </span>
         </div>
-        <a
-          href="#contact"
-          style={{
-            background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-            color: '#0F1115',
-            padding: '10px 22px',
-            borderRadius: '50px',
-            fontWeight: 700,
-            fontSize: '13px',
-            textDecoration: 'none',
-            letterSpacing: '0.04em',
-            boxShadow: '0 4px 16px rgba(212,175,55,0.3)',
-            whiteSpace: 'nowrap',
-          }}
-        >
+        <a href="#contact" style={{
+          background: 'linear-gradient(135deg, #D4AF37, #E8C84A)', color: '#0F1115',
+          padding: '10px 22px', borderRadius: '50px', fontWeight: 700, fontSize: '13px',
+          textDecoration: 'none', letterSpacing: '0.04em',
+          boxShadow: '0 4px 16px rgba(212,175,55,0.3)', whiteSpace: 'nowrap',
+        }}>
           Book Consultation →
         </a>
       </nav>
 
       {/* ══════════════════════════════════════════════════════════════════════ */}
-      {/* ── HERO — Full-bleed image + brand gradient overlay ─────────────── */}
+      {/* ── HERO — Full-bleed background + brand gradient overlay ─────────── */}
       {/* ══════════════════════════════════════════════════════════════════════ */}
       <section className="ao-hero-section">
 
-        {/* Hero photograph — fills the section */}
-        <img
-          src="/hero-launch.jpg"
-          alt=""
-          className="ao-hero-img"
-          aria-hidden="true"
-        />
+        {/* Background photograph */}
+        <img src="/hero-launch.jpg" alt="" className="ao-hero-img" aria-hidden="true" />
 
-        {/* Brand blue gradient overlay — opaque on content side, reveals image on right */}
+        {/* Brand gradient overlay — opaque on content side, fades to reveal photo */}
         <div className="ao-hero-overlay" />
 
-        {/* Extra radial glow on text side */}
+        {/* Radial glow on text side */}
         <div style={{
-          position: 'absolute',
-          top: '50%', left: '15%',
+          position: 'absolute', top: '50%', left: '15%',
           transform: 'translate(-50%, -50%)',
           width: '700px', height: '600px',
-          background: 'radial-gradient(ellipse, rgba(255,255,255,0.3) 0%, transparent 65%)',
-          pointerEvents: 'none',
-          zIndex: 2,
+          background: 'radial-gradient(ellipse, rgba(255,255,255,0.28) 0%, transparent 65%)',
+          pointerEvents: 'none', zIndex: 2,
         }} />
 
         {/* Launching badge */}
         <div style={{
           position: 'absolute', top: '24px', right: '28px',
-          background: 'rgba(255,255,255,0.78)',
-          border: '1px solid rgba(212,175,55,0.55)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: '50px',
-          padding: '7px 18px',
-          fontSize: '11px',
-          fontWeight: 700,
-          letterSpacing: '0.12em',
-          color: '#8A6B1A',
-          textTransform: 'uppercase',
-          zIndex: 20,
+          background: 'rgba(255,255,255,0.8)', border: '1px solid rgba(212,175,55,0.55)',
+          backdropFilter: 'blur(10px)', borderRadius: '50px',
+          padding: '7px 18px', fontSize: '11px', fontWeight: 700,
+          letterSpacing: '0.12em', color: '#8A6B1A', textTransform: 'uppercase', zIndex: 20,
         }}>
           🚀 Launching 2025
         </div>
 
-        {/* Content */}
         <div className="ao-hero-content">
           <div className="ao-hero-inner">
 
-            {/* Logo */}
-            <div style={{ marginBottom: '22px' }}>
-              <AOLogo
-                color="#D4AF37"
-                style={{
-                  height: '100px',
-                  width: 'auto',
-                  filter: 'drop-shadow(0 6px 24px rgba(212,175,55,0.5))',
-                }}
-              />
-            </div>
+            {/* ── REAL AOAI Brand Logo ─────────────────────────────────────── */}
+            <img
+              src="/logo-brand.png"
+              alt="AOAI Solutions — Alpha Omega Artificial Intelligence"
+              className="ao-logo-hero"
+            />
 
             {/* Eyebrow */}
             <p style={{
@@ -337,52 +319,35 @@ export default function LandingPage() {
               and digital infrastructure for modern businesses.
             </p>
 
-            {/* CTA Buttons */}
+            {/* CTAs */}
             <div className="ao-cta-row" style={{ marginBottom: '32px' }}>
-              <a
-                href="#contact"
-                style={{
-                  background: 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-                  color: '#0F1115', padding: '15px 32px', borderRadius: '50px',
-                  fontWeight: 700, fontSize: '15px', textDecoration: 'none',
-                  boxShadow: '0 8px 24px rgba(212,175,55,0.45)', letterSpacing: '0.04em',
-                }}
-              >
-                Book Consultation →
-              </a>
-              <a
-                href="#contact"
-                style={{
-                  border: '2px solid rgba(15,17,21,0.35)', color: '#0F1115',
-                  padding: '15px 32px', borderRadius: '50px', fontWeight: 600,
-                  fontSize: '15px', textDecoration: 'none',
-                  background: 'rgba(255,255,255,0.58)', backdropFilter: 'blur(4px)',
-                }}
-              >
-                Request Proposal
-              </a>
-              <a
-                href="tel:2024253161"
-                style={{
-                  border: '2px solid rgba(212,175,55,0.55)', color: '#7A5C12',
-                  padding: '15px 32px', borderRadius: '50px', fontWeight: 600,
-                  fontSize: '15px', textDecoration: 'none',
-                  background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(4px)',
-                }}
-              >
-                📞 Contact Directly
-              </a>
+              <a href="#contact" style={{
+                background: 'linear-gradient(135deg, #D4AF37, #E8C84A)', color: '#0F1115',
+                padding: '15px 32px', borderRadius: '50px', fontWeight: 700, fontSize: '15px',
+                textDecoration: 'none', boxShadow: '0 8px 24px rgba(212,175,55,0.45)',
+                letterSpacing: '0.04em',
+              }}>Book Consultation →</a>
+              <a href="#contact" style={{
+                border: '2px solid rgba(15,17,21,0.35)', color: '#0F1115',
+                padding: '15px 32px', borderRadius: '50px', fontWeight: 600, fontSize: '15px',
+                textDecoration: 'none', background: 'rgba(255,255,255,0.58)',
+                backdropFilter: 'blur(4px)',
+              }}>Request Proposal</a>
+              <a href="tel:2024253161" style={{
+                border: '2px solid rgba(212,175,55,0.55)', color: '#7A5C12',
+                padding: '15px 32px', borderRadius: '50px', fontWeight: 600, fontSize: '15px',
+                textDecoration: 'none', background: 'rgba(255,255,255,0.45)',
+                backdropFilter: 'blur(4px)',
+              }}>📞 Contact Directly</a>
             </div>
 
             {/* Trust Badges */}
             <div className="ao-badge-row">
               {TRUST_POINTS.map(t => (
                 <div key={t.label} style={{
-                  background: 'rgba(255,255,255,0.7)',
-                  border: '1px solid rgba(212,175,55,0.32)',
-                  backdropFilter: 'blur(8px)',
-                  borderRadius: '50px', padding: '8px 16px',
-                  fontSize: '12px', fontWeight: 500, color: '#0F1115',
+                  background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(212,175,55,0.32)',
+                  backdropFilter: 'blur(8px)', borderRadius: '50px',
+                  padding: '8px 16px', fontSize: '12px', fontWeight: 500, color: '#0F1115',
                 }}>
                   {t.icon} &nbsp; {t.label}
                 </div>
@@ -417,12 +382,8 @@ export default function LandingPage() {
       <section style={{ padding: '80px 24px 100px', background: 'linear-gradient(180deg, #F0F5FF 0%, #E8EFFF 100%)' }}>
         <div style={{ maxWidth: '1120px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4AF37', textTransform: 'uppercase', marginBottom: '14px' }}>
-              What We Build
-            </p>
-            <h2 style={{ fontSize: 'clamp(26px, 4vw, 46px)', fontWeight: 800, color: '#0F1115', marginBottom: '14px', letterSpacing: '-0.02em' }}>
-              Full-Spectrum AI Services
-            </h2>
+            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4AF37', textTransform: 'uppercase', marginBottom: '14px' }}>What We Build</p>
+            <h2 style={{ fontSize: 'clamp(26px, 4vw, 46px)', fontWeight: 800, color: '#0F1115', marginBottom: '14px', letterSpacing: '-0.02em' }}>Full-Spectrum AI Services</h2>
             <p style={{ fontSize: '16px', color: '#4A5568', fontWeight: 300, maxWidth: '540px', margin: '0 auto' }}>
               Everything your business needs to compete, automate, and grow in the AI era.
             </p>
@@ -444,12 +405,8 @@ export default function LandingPage() {
       <section id="contact" style={{ padding: '96px 24px', background: '#fff' }}>
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '52px' }}>
-            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4AF37', textTransform: 'uppercase', marginBottom: '14px' }}>
-              Let's Build Together
-            </p>
-            <h2 style={{ fontSize: 'clamp(26px, 4vw, 46px)', fontWeight: 800, color: '#0F1115', marginBottom: '14px', letterSpacing: '-0.02em' }}>
-              Book a Free Consultation
-            </h2>
+            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: '#D4AF37', textTransform: 'uppercase', marginBottom: '14px' }}>Let's Build Together</p>
+            <h2 style={{ fontSize: 'clamp(26px, 4vw, 46px)', fontWeight: 800, color: '#0F1115', marginBottom: '14px', letterSpacing: '-0.02em' }}>Book a Free Consultation</h2>
             <div style={{ width: '52px', height: '3px', background: 'linear-gradient(90deg, #D4AF37, #E8C84A)', borderRadius: '4px', margin: '0 auto 22px' }} />
             <p style={{ fontSize: '16px', color: '#4A5568', fontWeight: 300, lineHeight: 1.65 }}>
               Tell us about your business and goals. We'll reach out within 24 hours to schedule a free strategy call.
@@ -457,28 +414,13 @@ export default function LandingPage() {
           </div>
 
           {submitted ? (
-            <div style={{
-              textAlign: 'center', padding: '56px 32px',
-              background: 'linear-gradient(145deg, #D8E6FF, #EEF3FF)',
-              borderRadius: '24px', border: '1px solid rgba(212,175,55,0.3)',
-            }}>
+            <div style={{ textAlign: 'center', padding: '56px 32px', background: 'linear-gradient(145deg, #D8E6FF, #EEF3FF)', borderRadius: '24px', border: '1px solid rgba(212,175,55,0.3)' }}>
               <div style={{ fontSize: '54px', marginBottom: '20px' }}>✅</div>
               <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#0F1115', marginBottom: '10px' }}>Message Received!</h3>
-              <p style={{ color: '#4A5568', fontWeight: 300, fontSize: '16px', lineHeight: 1.6 }}>
-                We'll be in touch within 24 hours to schedule your free strategy call.
-              </p>
+              <p style={{ color: '#4A5568', fontWeight: 300, fontSize: '16px', lineHeight: 1.6 }}>We'll be in touch within 24 hours to schedule your free strategy call.</p>
             </div>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              style={{
-                display: 'flex', flexDirection: 'column', gap: '18px',
-                background: '#fff', borderRadius: '24px', padding: '40px',
-                border: '1px solid rgba(122,156,255,0.15)',
-                boxShadow: '0 8px 40px rgba(122,156,255,0.12)',
-              }}
-            >
-              {/* Row: Name + Company */}
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px', background: '#fff', borderRadius: '24px', padding: '40px', border: '1px solid rgba(122,156,255,0.15)', boxShadow: '0 8px 40px rgba(122,156,255,0.12)' }}>
               <div className="ao-form-grid-2">
                 {[
                   { key: 'name', label: 'Full Name *', placeholder: 'Jane Smith', type: 'text', required: true },
@@ -486,9 +428,7 @@ export default function LandingPage() {
                 ].map(f => (
                   <div key={f.key}>
                     <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{f.label}</label>
-                    <input
-                      type={f.type} required={f.required} placeholder={f.placeholder}
-                      value={form[f.key]}
+                    <input type={f.type} required={f.required} placeholder={f.placeholder} value={form[f.key]}
                       onChange={e => setForm(p => ({ ...p, [f.key]: e.target.value }))}
                       style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115', outline: 'none', fontFamily: 'inherit', transition: 'border-color 0.2s, box-shadow 0.2s', boxSizing: 'border-box' }}
                       onFocus={e => { e.target.style.borderColor = '#D4AF37'; e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.1)' }}
@@ -497,8 +437,6 @@ export default function LandingPage() {
                   </div>
                 ))}
               </div>
-
-              {/* Row: Email + Phone */}
               <div className="ao-form-grid-2">
                 {[
                   { key: 'email', label: 'Email *', placeholder: 'jane@company.com', type: 'email', required: true },
@@ -506,9 +444,7 @@ export default function LandingPage() {
                 ].map(f => (
                   <div key={f.key}>
                     <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{f.label}</label>
-                    <input
-                      type={f.type} required={f.required} placeholder={f.placeholder}
-                      value={form[f.key]}
+                    <input type={f.type} required={f.required} placeholder={f.placeholder} value={form[f.key]}
                       onChange={e => setForm(p => ({ ...p, [f.key]: e.target.value }))}
                       style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115', outline: 'none', fontFamily: 'inherit', transition: 'border-color 0.2s, box-shadow 0.2s', boxSizing: 'border-box' }}
                       onFocus={e => { e.target.style.borderColor = '#D4AF37'; e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.1)' }}
@@ -517,15 +453,9 @@ export default function LandingPage() {
                   </div>
                 ))}
               </div>
-
-              {/* Service Interest */}
               <div>
-                <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                  Service Interest
-                </label>
-                <select
-                  value={form.service}
-                  onChange={e => setForm(p => ({ ...p, service: e.target.value }))}
+                <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Service Interest</label>
+                <select value={form.service} onChange={e => setForm(p => ({ ...p, service: e.target.value }))}
                   style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115', outline: 'none', fontFamily: 'inherit', background: '#fff', transition: 'border-color 0.2s, box-shadow 0.2s' }}
                   onFocus={e => { e.target.style.borderColor = '#D4AF37'; e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.1)' }}
                   onBlur={e => { e.target.style.borderColor = '#E2E8F0'; e.target.style.boxShadow = 'none' }}
@@ -543,42 +473,25 @@ export default function LandingPage() {
                   <option value="not-sure">Not Sure Yet — Let's Talk</option>
                 </select>
               </div>
-
-              {/* Message */}
               <div>
-                <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                  Tell Us About Your Project
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="Describe your business goals and what you'd like to build..."
-                  value={form.message}
+                <label style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: '#0F1115', marginBottom: '7px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Tell Us About Your Project</label>
+                <textarea rows={4} placeholder="Describe your business goals and what you'd like to build..." value={form.message}
                   onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                   style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1.5px solid #E2E8F0', fontSize: '14px', color: '#0F1115', outline: 'none', fontFamily: 'inherit', resize: 'vertical', transition: 'border-color 0.2s, box-shadow 0.2s', lineHeight: 1.6, boxSizing: 'border-box' }}
                   onFocus={e => { e.target.style.borderColor = '#D4AF37'; e.target.style.boxShadow = '0 0 0 3px rgba(212,175,55,0.1)' }}
                   onBlur={e => { e.target.style.borderColor = '#E2E8F0'; e.target.style.boxShadow = 'none' }}
                 />
               </div>
-
-              {formError && (
-                <p style={{ color: '#e53e3e', fontSize: '13px', textAlign: 'center' }}>{formError}</p>
-              )}
-
-              <button
-                type="submit"
-                disabled={submitting}
-                style={{
-                  background: submitting ? 'rgba(212,175,55,0.6)' : 'linear-gradient(135deg, #D4AF37, #E8C84A)',
-                  color: '#0F1115', padding: '16px 36px', borderRadius: '50px',
-                  fontWeight: 700, fontSize: '15px', border: 'none',
-                  cursor: submitting ? 'not-allowed' : 'pointer',
-                  letterSpacing: '0.04em', boxShadow: '0 6px 24px rgba(212,175,55,0.35)',
-                  transition: 'all 0.2s', fontFamily: 'inherit', width: '100%',
-                }}
-              >
+              {formError && <p style={{ color: '#e53e3e', fontSize: '13px', textAlign: 'center' }}>{formError}</p>}
+              <button type="submit" disabled={submitting} style={{
+                background: submitting ? 'rgba(212,175,55,0.6)' : 'linear-gradient(135deg, #D4AF37, #E8C84A)',
+                color: '#0F1115', padding: '16px 36px', borderRadius: '50px', fontWeight: 700,
+                fontSize: '15px', border: 'none', cursor: submitting ? 'not-allowed' : 'pointer',
+                letterSpacing: '0.04em', boxShadow: '0 6px 24px rgba(212,175,55,0.35)',
+                transition: 'all 0.2s', fontFamily: 'inherit', width: '100%',
+              }}>
                 {submitting ? 'Sending...' : 'Submit Consultation Request →'}
               </button>
-
               <p style={{ textAlign: 'center', fontSize: '12px', color: '#718096', fontWeight: 300 }}>
                 Or reach us directly: &nbsp;
                 <a href="tel:2024253161" style={{ color: '#D4AF37', fontWeight: 600, textDecoration: 'none' }}>202.425.3161</a>
@@ -591,39 +504,22 @@ export default function LandingPage() {
       </section>
 
       {/* ── Contact Card + QR ───────────────────────────────────────────────── */}
-      <section style={{
-        padding: '80px 24px 96px',
-        background: 'linear-gradient(145deg, #C9D9FF 0%, #8AACFF 50%, #7A9CFF 100%)',
-        position: 'relative', overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          background: 'radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.4) 0%, transparent 65%)',
-        }} />
+      <section style={{ padding: '80px 24px 96px', background: 'linear-gradient(145deg, #C9D9FF 0%, #8AACFF 50%, #7A9CFF 100%)', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.4) 0%, transparent 65%)' }} />
         <div style={{ maxWidth: '960px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '52px' }}>
-            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: '#7A5C12', textTransform: 'uppercase', marginBottom: '12px' }}>
-              Connect Directly
-            </p>
-            <h2 style={{ fontSize: 'clamp(24px, 3.5vw, 40px)', fontWeight: 800, color: '#0F1115', letterSpacing: '-0.02em' }}>
-              Ready to Connect?
-            </h2>
+            <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: '#7A5C12', textTransform: 'uppercase', marginBottom: '12px' }}>Connect Directly</p>
+            <h2 style={{ fontSize: 'clamp(24px, 3.5vw, 40px)', fontWeight: 800, color: '#0F1115', letterSpacing: '-0.02em' }}>Ready to Connect?</h2>
           </div>
           <div className="ao-contact-grid">
 
             {/* Digital Contact Card */}
-            <div style={{
-              background: 'rgba(255,255,255,0.94)', borderRadius: '28px', padding: '44px 36px',
-              boxShadow: '0 24px 72px rgba(0,0,0,0.12)', border: '1px solid rgba(212,175,55,0.3)',
-              backdropFilter: 'blur(12px)',
-            }}>
+            <div style={{ background: 'rgba(255,255,255,0.94)', borderRadius: '28px', padding: '44px 36px', boxShadow: '0 24px 72px rgba(0,0,0,0.12)', border: '1px solid rgba(212,175,55,0.3)', backdropFilter: 'blur(12px)' }}>
               <div style={{ marginBottom: '24px' }}>
-                <AOLogo color="#D4AF37" style={{ height: '50px', width: 'auto', filter: 'drop-shadow(0 2px 8px rgba(212,175,55,0.3))' }} />
+                <img src="/logo-transparent.png" alt="AOAI Solutions" style={{ height: '52px', objectFit: 'contain', display: 'block', filter: 'drop-shadow(0 2px 8px rgba(212,175,55,0.3))' }} />
               </div>
               <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0F1115', marginBottom: '4px' }}>Michael Smith</h3>
-              <p style={{ fontSize: '12px', color: '#718096', marginBottom: '28px', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600 }}>
-                Founder & AI Systems Engineer
-              </p>
+              <p style={{ fontSize: '12px', color: '#718096', marginBottom: '28px', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600 }}>Founder & AI Systems Engineer</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
                   { href: 'tel:2024253161', icon: '📞', label: '202.425.3161' },
@@ -643,16 +539,13 @@ export default function LandingPage() {
 
             {/* QR Code */}
             <div style={{ textAlign: 'center' }}>
-              <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: '#7A5C12', textTransform: 'uppercase', marginBottom: '20px' }}>
-                📱 Scan to Connect
-              </p>
+              <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: '#7A5C12', textTransform: 'uppercase', marginBottom: '20px' }}>📱 Scan to Connect</p>
               <div style={{ display: 'inline-block', background: '#fff', borderRadius: '24px', padding: '22px', boxShadow: '0 20px 60px rgba(0,0,0,0.14)', border: '3px solid rgba(212,175,55,0.45)' }}>
                 <img
                   src="https://api.qrserver.com/v1/create-qr-code/?data=https%3A%2F%2Faoaisolutions.dev%23contact&size=240x240&format=png&margin=8&qzone=1&color=0F1115&bgcolor=FFFFFF"
                   alt="AOAI Solutions QR Code — Scan to book a consultation"
                   width={240} height={240}
                   style={{ display: 'block', borderRadius: '10px' }}
-                  loading="eager"
                 />
               </div>
               <p style={{ fontSize: '13px', color: '#1A2332', marginTop: '16px', fontWeight: 500, lineHeight: 1.6 }}>
@@ -670,9 +563,12 @@ export default function LandingPage() {
 
       {/* ── Footer ──────────────────────────────────────────────────────────── */}
       <footer style={{ background: '#0F1115', color: '#fff', padding: '64px 24px 36px', textAlign: 'center' }}>
-        <div style={{ marginBottom: '20px' }}>
-          <AOLogo color="#D4AF37" style={{ height: '60px', width: 'auto', filter: 'drop-shadow(0 4px 16px rgba(212,175,55,0.3))' }} />
-        </div>
+        {/* White logo version for dark footer */}
+        <img
+          src="/logo-white.png"
+          alt="AOAI Solutions"
+          className="ao-logo-footer"
+        />
         <p style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.22em', color: 'rgba(212,175,55,0.8)', textTransform: 'uppercase', marginBottom: '10px' }}>
           AI SOLUTIONS
         </p>
@@ -690,18 +586,12 @@ export default function LandingPage() {
             <a key={l.label} href={l.href} style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none', fontSize: '14px' }}
               onMouseEnter={e => e.target.style.color = '#D4AF37'}
               onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.5)'}
-            >
-              {l.label}
-            </a>
+            >{l.label}</a>
           ))}
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '24px' }}>
-          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)' }}>
-            © 2025 AOAI Solutions. All rights reserved. | aoaisolutions.dev
-          </p>
-          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.15)', marginTop: '6px' }}>
-            🚀 Launching 2025 — Pre-launch authority landing page
-          </p>
+          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)' }}>© 2025 AOAI Solutions. All rights reserved. | aoaisolutions.dev</p>
+          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.15)', marginTop: '6px' }}>🚀 Launching 2025 — Pre-launch authority landing page</p>
         </div>
       </footer>
 
