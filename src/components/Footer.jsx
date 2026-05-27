@@ -37,12 +37,6 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-1 mt-4">
               <a
-                href="mailto:claire.lindstrom@aoaisolutions.dev"
-                className="font-dm text-xs text-ao-gray hover:text-ao-gold transition-colors duration-200"
-              >
-                claire.lindstrom@aoaisolutions.dev
-              </a>
-              <a
                 href="mailto:michael.smith@aoaisolutions.dev"
                 className="font-dm text-xs text-ao-gray hover:text-ao-gold transition-colors duration-200"
               >

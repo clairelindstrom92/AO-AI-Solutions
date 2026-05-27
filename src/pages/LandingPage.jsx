@@ -213,7 +213,7 @@ export default function LandingPage() {
         padding: '9px 24px', textAlign: 'center', fontSize: '12px',
         fontWeight: 700, letterSpacing: '0.1em', color: '#0F1115', textTransform: 'uppercase',
       }}>
-        ✦ &nbsp; Launching 2025 — Pre-Launch Consultations Now Booking &nbsp; ✦
+        ✦ &nbsp; Launching Fall 2026 — Pre-Launch Consultations Now Booking &nbsp; ✦
       </div>
 
       {/* ── Sticky Nav ──────────────────────────────────────────────────────── */}
@@ -275,7 +275,7 @@ export default function LandingPage() {
           padding: '7px 18px', fontSize: '11px', fontWeight: 700,
           letterSpacing: '0.12em', color: '#8A6B1A', textTransform: 'uppercase', zIndex: 20,
         }}>
-          🚀 Launching 2025
+          🚀 Launching Fall 2026
         </div>
 
         <div className="ao-hero-content">
@@ -519,7 +519,7 @@ export default function LandingPage() {
                 <img src="/logo-transparent.png" alt="AOAI Solutions" style={{ height: '52px', objectFit: 'contain', display: 'block', filter: 'drop-shadow(0 2px 8px rgba(212,175,55,0.3))' }} />
               </div>
               <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#0F1115', marginBottom: '4px' }}>Michael Smith</h3>
-              <p style={{ fontSize: '12px', color: '#718096', marginBottom: '28px', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600 }}>Founder & AI Systems Engineer</p>
+              <p style={{ fontSize: '12px', color: '#718096', marginBottom: '28px', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600 }}>Founder & CEO · AI Engineer</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {[
                   { href: 'tel:2024253161', icon: '📞', label: '202.425.3161' },
@@ -590,8 +590,8 @@ export default function LandingPage() {
           ))}
         </div>
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '24px' }}>
-          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)' }}>© 2025 AOAI Solutions. All rights reserved. | aoaisolutions.dev</p>
-          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.15)', marginTop: '6px' }}>🚀 Launching 2025 — Pre-launch authority landing page</p>
+          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)' }}>© 2026 AOAI Solutions. All rights reserved. | aoaisolutions.dev</p>
+          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.15)', marginTop: '6px' }}>🚀 Launching Fall 2026 — Pre-launch authority landing page</p>
         </div>
       </footer>
 
