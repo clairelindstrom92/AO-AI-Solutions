@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import AOLogo from './AOLogo'
 import { trackBookDemoClick, trackGetWebsiteClick } from '../lib/analytics'
 
 const links = [
@@ -38,10 +37,7 @@ export default function Nav() {
 
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group" aria-label="AO AI Solutions home">
-          <AOLogo className="h-8 w-auto" color="#D4AF37" />
-          <span className="font-heading font-bold text-base text-ao-dark hidden sm:block" style={{ letterSpacing: '-0.01em' }}>
-            AI Solutions
-          </span>
+          <img src="/aoai-bubble-logo.jpeg" alt="AO AI Solutions" className="h-10 w-10 rounded-full object-cover" />
         </a>
 
         {/* Center links */}
