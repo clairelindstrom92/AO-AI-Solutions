@@ -1,4 +1,3 @@
-import AOLogo from './AOLogo'
 
 const footerLinks = [
   { label: 'Services',     href: '#services' },
@@ -21,10 +20,7 @@ export default function Footer() {
           {/* Left — Logo + tagline */}
           <div>
             <div className="flex items-center gap-2.5 mb-3">
-              <AOLogo className="h-8 w-auto" color="#D4AF37" />
-              <span className="font-heading font-bold text-base text-ao-dark">
-                AO AI Solutions
-              </span>
+              <img src="/aoai-bubble-logo.jpeg" alt="AO AI Solutions" className="h-10 w-10 rounded-full object-cover" />
             </div>
             <p
               className="font-dm font-light text-ao-dark leading-relaxed mb-5"
